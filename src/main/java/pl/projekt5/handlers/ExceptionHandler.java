@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package pl.projekt5.dziennik;
+package pl.projekt5.handlers;
 
 /**
  *
@@ -21,7 +21,7 @@ public class ExceptionHandler {
     public static void handle(Exception ex, int level) {
         switch(level) {
             case FATAL_ERR:
-                System.err.format("[Blad krytyczny]: %s\n", ex.getMessage());
+                System.err.format("[Blad krytyczny]: (%s) %s\n", ex.getClass(), ex.getMessage());
                 ex.printStackTrace();
                 System.err.println("Konczenie programu...");
                 System.exit(1);

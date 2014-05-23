@@ -5,9 +5,7 @@ import java.sql.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.NodeList;
 import pl.projekt5.handlers.ExceptionHandler;
-
 
 /**
  *
