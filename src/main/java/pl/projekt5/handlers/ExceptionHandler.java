@@ -1,15 +1,15 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 
-package pl.projekt5.dziennik;
+package pl.projekt5.handlers;
 
 /**
- *
- * @author Kuba
- */
+*
+* @author Kuba
+*/
 public class ExceptionHandler {
     public static final int FATAL_ERR=0;
     public static final int WARNING=1;
@@ -21,7 +21,7 @@ public class ExceptionHandler {
     public static void handle(Exception ex, int level) {
         switch(level) {
             case FATAL_ERR:
-                System.err.format("[Blad krytyczny]: %s\n", ex.getMessage());
+                System.err.format("[Blad krytyczny]: (%s) %s\n", ex.getClass(), ex.getMessage());
                 ex.printStackTrace();
                 System.err.println("Konczenie programu...");
                 System.exit(1);

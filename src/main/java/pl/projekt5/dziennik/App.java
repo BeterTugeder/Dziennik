@@ -1,24 +1,18 @@
 package pl.projekt5.dziennik;
 
-import java.sql.*;
-
+import pl.projekt5.handlers.LogHandler;
+import pl.projekt5.models.Model;
+import pl.projekt5.models.ModelFactory;
 /**
- * Hello world!
- *
- */
-public class App 
+* Hello world!
+*
+*/
+public class App
 {
     public static void main( String[] args )
     {
-        //System.out.println( "Hello World!" );
+        ModelFactory m = ModelFactory.getInstance();
         
-        Connection c = null;
-        try {
-          c = DriverManager.getConnection("jdbc:sqlite:database.db");
-        } catch ( Exception e ) {
-          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-          System.exit(0);
-        }
-        System.out.println("Opened database successfully");
+        LogHandler.close();
     }
 }
