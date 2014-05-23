@@ -4,10 +4,10 @@ import pl.projekt5.handlers.LogHandler;
 import pl.projekt5.models.Model;
 import pl.projekt5.models.ModelFactory;
 /**
- * Hello world!
- *
- */
-public class App 
+* Hello world!
+*
+*/
+public class App
 {
     public static void main( String[] args )
     {

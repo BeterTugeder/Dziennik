@@ -8,9 +8,9 @@ import org.w3c.dom.NamedNodeMap;
 import pl.projekt5.handlers.ExceptionHandler;
 
 /**
- *
- * @author Kuba
- */
+*
+* @author Kuba
+*/
 public class ModelFactory {
     
     private static ModelFactory instance = null;
@@ -56,7 +56,7 @@ public class ModelFactory {
                 throw new ModelException("Nie mozna zaladowac wybranego modelu: " + name);
             }
             
-        }catch(Exception e) { 
+        }catch(Exception e) {
             //lapiemy wszystkie wyjatki jako fatal error
             ExceptionHandler.handle(e, ExceptionHandler.FATAL_ERR);
         }
