@@ -50,7 +50,7 @@ public class ModelFactory {
             if(!name.equals("Model")
                     || !name.equals("ModelFactory")
                     || !name.equals("ModelException")
-                    || !name.equals("StringEscapeUtils")) {
+            ) {
                 //Throws
                 //ClassNotFoundException
                 //InstantiationException

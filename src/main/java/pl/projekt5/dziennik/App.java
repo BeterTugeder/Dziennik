@@ -1,9 +1,7 @@
 package pl.projekt5.dziennik;
 
 import java.util.ListIterator;
-import pl.projekt5.handlers.ExceptionHandler;
 import pl.projekt5.handlers.LogHandler;
-import pl.projekt5.models.Model;
 import pl.projekt5.models.ModelFactory;
 
 import pl.projekt5.models.KlasyModel;
@@ -26,10 +24,13 @@ public class App
         Klasa e = null;
         while(it.hasNext()){
             e = it.next();
-            System.out.printf("%d\t%s\n", e.getId(), e.nazwa);
+            System.out.printf("%d\t%s\n", e.id, e.nazwa);
         }
-        if(e!=null)
-            e.delete();
+        if(e!=null) {
+            //e.delete();   //usuwanie ostatniego elementu
+            e.nazwa = "3 A";
+            //e.update();     //update ostatniego elementu, zmiana nazwy na "3 A"
+        }
         
         
         LogHandler.close();
