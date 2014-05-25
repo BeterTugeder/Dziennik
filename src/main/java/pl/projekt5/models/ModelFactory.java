@@ -2,10 +2,12 @@ package pl.projekt5.models;
 
 import java.io.InputStream;
 import java.sql.*;
+import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.NamedNodeMap;
 import pl.projekt5.handlers.ExceptionHandler;
+import pl.projekt5.handlers.LogHandler;
 
 /**
 *
@@ -15,7 +17,7 @@ public class ModelFactory {
     
     private static ModelFactory instance = null;
     
-    private Connection conn;
+    private static Connection conn;
     
     private ModelFactory() {
         try {
@@ -45,7 +47,10 @@ public class ModelFactory {
         Model obj = null;
         ClassLoader classLoader = ModelFactory.class.getClassLoader();
         try {
-            if(!name.equals("Model") || !name.equals("ModelFactory") || !name.equals("ModelException")) {
+            if(!name.equals("Model")
+                    || !name.equals("ModelFactory")
+                    || !name.equals("ModelException")
+            ) {
                 //Throws
                 //ClassNotFoundException
                 //InstantiationException
@@ -62,5 +67,13 @@ public class ModelFactory {
         }
         obj.initializeModel(conn);
         return obj;
+    }
+    
+    public static void closeConnection() {
+        try {
+            conn.close();
+        } catch (SQLException e) {
+            ExceptionHandler.handle(e, ExceptionHandler.FATAL_ERR);
+        }
     }
 }

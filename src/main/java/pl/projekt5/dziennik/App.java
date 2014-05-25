@@ -1,8 +1,11 @@
 package pl.projekt5.dziennik;
 
+import java.util.ListIterator;
 import pl.projekt5.handlers.LogHandler;
-import pl.projekt5.models.Model;
 import pl.projekt5.models.ModelFactory;
+
+import pl.projekt5.models.KlasyModel;
+import pl.projekt5.models.KlasyModel.Klasa;
 /**
 * Hello world!
 *
@@ -13,6 +16,25 @@ public class App
     {
         ModelFactory m = ModelFactory.getInstance();
         
+        KlasyModel klasa = (KlasyModel)m.getModel("KlasyModel");
+        /*klasa.add("2 A");
+        klasa.add("3 A");
+        klasa.add("4 A");*/
+        ListIterator<Klasa> it = klasa.get().listIterator();
+        Klasa e = null;
+        while(it.hasNext()){
+            e = it.next();
+            System.out.printf("%d\t%s\n", e.id, e.nazwa);
+        }
+        if(e!=null) {
+            //e.delete();   //usuwanie ostatniego elementu
+            e.nazwa = "3 A";
+            //e.update();     //update ostatniego elementu, zmiana nazwy na "3 A"
+        }
+        
+        
         LogHandler.close();
+        
+        ModelFactory.closeConnection();
     }
 }
