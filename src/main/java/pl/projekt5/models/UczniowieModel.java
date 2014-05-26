@@ -10,12 +10,13 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import pl.projekt5.handlers.ExceptionHandler;
+import pl.projekt5.models.KlasyModel.Klasa;
 
 /**
  *
  * @author Kuba
  */
-public class KlasyModel implements Model {
+public class UczniowieModel implements Model {
     
     static Connection conn = null;
 
@@ -23,12 +24,14 @@ public class KlasyModel implements Model {
         conn = c;
     }
     
-    public void add(String nazwa) {
+    public void add(String imie, String nazwisko, Klasa kl) {
         PreparedStatement stmt;
         try {
-            stmt = conn.prepareStatement("INSERT INTO klasy(nazwa) VALUES (?)");
+            stmt = conn.prepareStatement("INSERT INTO uczniowie(imie, nazwisko, klasy_id) VALUES (?, ?, ?)");
             //stmt.executeUpdate();
-            stmt.setString(1, nazwa);
+            stmt.setString(1, imie);
+            stmt.setString(2, nazwisko);
+            stmt.setInt(3, kl.id);
             stmt.executeUpdate();
             stmt.close();
         } catch (SQLException e) {
@@ -36,15 +39,15 @@ public class KlasyModel implements Model {
         }
     }
     
-    public List<Klasa> get() {
+    public List<Uczen> get() {
         Statement stmt;
         ResultSet rs;
-        List result = new ArrayList<Klasa>();
+        List result = new ArrayList<Uczen>();
         try {
             stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-            rs = stmt.executeQuery("SELECT klasy_id, nazwa FROM klasy");
+            rs = stmt.executeQuery("SELECT uczniowie_id, imie, nazwisko, klasy.klasy_id, nazwa FROM uczniowie, klasy WHERE klasy.klasy_id=uczniowie.klasy_id");
             while(rs.next()) {
-                result.add( new Klasa(rs.getInt(1), rs.getString(2))) ;
+                result.add( new Uczen(rs.getInt(1), rs.getString(2), rs.getString(3), new Klasa( rs.getInt(4), rs.getString(5) ) )) ;
             }
         } catch (SQLException e) {
             ExceptionHandler.handle(e, ExceptionHandler.MESSAGE);
@@ -52,15 +55,15 @@ public class KlasyModel implements Model {
         return result;
     }
     
-    public Klasa get(int id) {
+    public Uczen get(int id) {
         Statement stmt;
         ResultSet rs;
-        Klasa result = null;
+        Uczen result = null;
         try {
             stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-            rs = stmt.executeQuery("SELECT klasy_id, nazwa FROM klasy WHERE klasy_id=" + id + " LIMIT 1");
+            rs = stmt.executeQuery("SELECT uczniowie_id, imie, nazwisko, klasy_id, nazwa FROM uczniowie, klasy WHERE klasy.klasy_id=uczniowie.klasy_id AND uczniowie_id=" + id + " LIMIT 1");
             if(rs.next()) { //jezeli wynik pusty, to metoda zwraca null
-                result = new Klasa(rs.getInt(1), rs.getString(2));
+                result = new Uczen(rs.getInt(1), rs.getString(2), rs.getString(3), new Klasa( rs.getInt(4), rs.getString(5) ) );
             }
         } catch (SQLException e) {
             ExceptionHandler.handle(e, ExceptionHandler.MESSAGE);
@@ -72,7 +75,7 @@ public class KlasyModel implements Model {
         Statement stmt;
         try {
             stmt = conn.createStatement();
-            stmt.executeUpdate("DELETE FROM klasy");
+            stmt.executeUpdate("DELETE FROM uczniowie");
             stmt.close();
         } catch (SQLException e) {
             ExceptionHandler.handle(e, ExceptionHandler.MESSAGE);
@@ -83,29 +86,35 @@ public class KlasyModel implements Model {
         Statement stmt;
         try {
             stmt = conn.createStatement();
-            stmt.executeUpdate("DELETE FROM klasy WHERE klasy_id=" + id);
+            stmt.executeUpdate("DELETE FROM uczniowie WHERE uczniowie_id=" + id);
             stmt.close();
         } catch (SQLException e) {
             ExceptionHandler.handle(e, ExceptionHandler.MESSAGE);
         }
     }
     
-    public static class Klasa {
+    public static class Uczen {
         public final int id;
-        public String nazwa;
+        public String imie;
+        public String nazwisko;
+        public Klasa klasa;
         
-        public Klasa(int id, String nazwa) {
+        public Uczen(int id, String imie, String nazwisko, Klasa kl) {
             this.id = id;
-            this.nazwa = nazwa;
+            this.imie = imie;
+            this.nazwisko = nazwisko;
+            this.klasa = kl;
         }
         
         public void update() {
             PreparedStatement stmt;
             try {
-                stmt = conn.prepareStatement("UPDATE klasy SET nazwa=? WHERE klasy_id=?");
+                stmt = conn.prepareStatement("UPDATE uczniowie SET imie=?, nazwisko=?, klasy_id=? WHERE uczniowie_id=?");
                 //stmt.executeUpdate();
-                stmt.setString(1, nazwa);
-                stmt.setInt(2, id);
+                stmt.setString(1, imie);
+                stmt.setString(2, nazwisko);
+                stmt.setInt(3, klasa.id);
+                stmt.setInt(4, id);
                 stmt.executeUpdate();
                 stmt.close();
             } catch (SQLException e) {
@@ -117,7 +126,7 @@ public class KlasyModel implements Model {
             Statement stmt;
             try {
                 stmt = conn.createStatement();
-                stmt.executeUpdate("DELETE FROM klasy WHERE klasy_id=" + id);
+                stmt.executeUpdate("DELETE FROM uczniowie WHERE uczniowie_id=" + id);
                 stmt.close();
             } catch (SQLException e) {
                 ExceptionHandler.handle(e, ExceptionHandler.MESSAGE);
