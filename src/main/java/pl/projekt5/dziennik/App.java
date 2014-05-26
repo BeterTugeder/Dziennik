@@ -52,6 +52,8 @@ public class App
         //testowy komentarz
         //commit
         
+        //komentarz z gita z edytora na stronie
+        
         //LogHandler.close();
         
         ModelFactory.closeConnection();
