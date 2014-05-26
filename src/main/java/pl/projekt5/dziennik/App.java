@@ -52,7 +52,7 @@ public class App
         //testowy komentarz
         //commit
         
-        LogHandler.close();
+        //LogHandler.close();
         
         ModelFactory.closeConnection();
     }
