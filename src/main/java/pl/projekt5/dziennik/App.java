@@ -49,6 +49,8 @@ public class App
             System.out.printf("%d\t%s\t%s\t%s\n", ue.id, ue.imie, ue.nazwisko, ue.klasa.nazwa);
         }
         
+        //testowy komentarz
+        //commit
         
         LogHandler.close();
         
