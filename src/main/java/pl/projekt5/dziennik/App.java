@@ -52,10 +52,6 @@ public class App
         //testowy komentarz
         //commit
         
-        
-
-        //tutaj jakis test...
-        
         LogHandler.close();
         
         ModelFactory.closeConnection();
