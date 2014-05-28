@@ -10,13 +10,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import pl.projekt5.handlers.ExceptionHandler;
-import pl.projekt5.models.KlasyModel.Klasa;
 
 /**
  *
  * @author Kuba
  */
-public class UczniowieModel implements Model {
+public class UczenModel implements Model {
     
     static Connection conn = null;
 
@@ -24,14 +23,14 @@ public class UczniowieModel implements Model {
         conn = c;
     }
     
-    public void add(String imie, String nazwisko, Klasa kl) {
+    public void add(Uczen u) {
         PreparedStatement stmt;
         try {
             stmt = conn.prepareStatement("INSERT INTO uczniowie(imie, nazwisko, klasy_id) VALUES (?, ?, ?)");
             //stmt.executeUpdate();
-            stmt.setString(1, imie);
-            stmt.setString(2, nazwisko);
-            stmt.setInt(3, kl.id);
+            stmt.setString(1, u.imie);
+            stmt.setString(2, u.nazwisko);
+            stmt.setInt(3, u.klasa.id);
             stmt.executeUpdate();
             stmt.close();
         } catch (SQLException e) {
@@ -39,7 +38,7 @@ public class UczniowieModel implements Model {
         }
     }
     
-    public List<Uczen> get() {
+    public List<Uczen> getAll() {
         Statement stmt;
         ResultSet rs;
         List result = new ArrayList<Uczen>();
@@ -81,56 +80,31 @@ public class UczniowieModel implements Model {
             ExceptionHandler.handle(e, ExceptionHandler.MESSAGE);
         }
     }
-    
-    public void delete(int id) {
-        Statement stmt;
+
+    public void update(Uczen u) {
+        PreparedStatement stmt;
         try {
-            stmt = conn.createStatement();
-            stmt.executeUpdate("DELETE FROM uczniowie WHERE uczniowie_id=" + id);
+            stmt = conn.prepareStatement("UPDATE uczniowie SET imie=?, nazwisko=?, klasy_id=? WHERE uczniowie_id=?");
+            //stmt.executeUpdate();
+            stmt.setString(1, u.imie);
+            stmt.setString(2, u.nazwisko);
+            stmt.setInt(3, u.klasa.id);
+            stmt.setInt(4, u.id);
+            stmt.executeUpdate();
             stmt.close();
         } catch (SQLException e) {
             ExceptionHandler.handle(e, ExceptionHandler.MESSAGE);
         }
     }
-    
-    public static class Uczen {
-        public final int id;
-        public String imie;
-        public String nazwisko;
-        public Klasa klasa;
-        
-        public Uczen(int id, String imie, String nazwisko, Klasa kl) {
-            this.id = id;
-            this.imie = imie;
-            this.nazwisko = nazwisko;
-            this.klasa = kl;
-        }
-        
-        public void update() {
-            PreparedStatement stmt;
-            try {
-                stmt = conn.prepareStatement("UPDATE uczniowie SET imie=?, nazwisko=?, klasy_id=? WHERE uczniowie_id=?");
-                //stmt.executeUpdate();
-                stmt.setString(1, imie);
-                stmt.setString(2, nazwisko);
-                stmt.setInt(3, klasa.id);
-                stmt.setInt(4, id);
-                stmt.executeUpdate();
-                stmt.close();
-            } catch (SQLException e) {
-                ExceptionHandler.handle(e, ExceptionHandler.MESSAGE);
-            }
-        }
-        
-        public void delete() {
-            Statement stmt;
-            try {
-                stmt = conn.createStatement();
-                stmt.executeUpdate("DELETE FROM uczniowie WHERE uczniowie_id=" + id);
-                stmt.close();
-            } catch (SQLException e) {
-                ExceptionHandler.handle(e, ExceptionHandler.MESSAGE);
-            }
+
+    public void delete(Uczen u) {
+        Statement stmt;
+        try {
+            stmt = conn.createStatement();
+            stmt.executeUpdate("DELETE FROM uczniowie WHERE uczniowie_id=" + u.id);
+            stmt.close();
+        } catch (SQLException e) {
+            ExceptionHandler.handle(e, ExceptionHandler.MESSAGE);
         }
     }
     
