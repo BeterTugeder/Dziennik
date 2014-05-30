@@ -68,6 +68,22 @@ public class UczenModel implements Model {
         return result;
     }
     
+    public List<Uczen> getAll(int klasa) {
+        Statement stmt;
+        ResultSet rs;
+        List result = new ArrayList<Uczen>();
+        try {
+            stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+            rs = stmt.executeQuery("SELECT uczniowie_id, imie, nazwisko FROM uczniowie WHERE klasy_id=" + klasa);
+            while(rs.next()) {
+                result.add( new Uczen(rs.getInt(1), rs.getString(2), rs.getString(3) )) ;
+            }
+        } catch (SQLException e) {
+            ExceptionHandler.handle(e, ExceptionHandler.MESSAGE);
+        }
+        return result;
+    }
+    
     public Uczen get(int id) {
         Statement stmt;
         ResultSet rs;
