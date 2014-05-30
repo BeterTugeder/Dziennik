@@ -29,97 +29,105 @@ public class view extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenu7 = new javax.swing.JMenu();
-        jMenuItem9 = new javax.swing.JMenuItem();
+        panel1 = new javax.swing.JPanel();
+        dziennik_elektroniczny = new javax.swing.JLabel();
+        panel2 = new javax.swing.JPanel();
+        jasiu = new javax.swing.JLabel();
+        tablica = new javax.swing.JLabel();
+        witaj_szkolo = new javax.swing.JLabel();
+        wybor_klasy = new javax.swing.JComboBox();
+        wybor_przedmiotu = new javax.swing.JComboBox();
+        panel3 = new javax.swing.JPanel();
+        klasa = new javax.swing.JLabel();
+        klasa_text = new javax.swing.JTextField();
+        nauczyciel = new javax.swing.JLabel();
+        nauczyciel_text = new javax.swing.JTextField();
+        wychowawca = new javax.swing.JLabel();
+        wychowawca_text = new javax.swing.JTextField();
+        rok_szkolny = new javax.swing.JLabel();
+        rok_szkolny_text = new javax.swing.JTextField();
+        scroll_panel = new javax.swing.JScrollPane();
+        tabela = new javax.swing.JTable();
+        menu = new javax.swing.JMenuBar();
+        opcje = new javax.swing.JMenu();
+        opcje_dodaj = new javax.swing.JMenu();
+        opcje_dodaj_klase = new javax.swing.JMenuItem();
+        opcje_dodaj_ucznia = new javax.swing.JMenuItem();
+        opcje_dodaj_przedmiot = new javax.swing.JMenuItem();
+        opcje_zmien = new javax.swing.JMenu();
+        opcje_zmien_nauczyciela = new javax.swing.JMenuItem();
+        opcje_zmien_wychowawce = new javax.swing.JMenuItem();
+        usun = new javax.swing.JMenu();
+        usun_nauczyciela = new javax.swing.JMenuItem();
+        usun_ucznia = new javax.swing.JMenuItem();
+        usun_klase = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        panel1.setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setFont(new java.awt.Font("Italic", 3, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 153, 51));
-        jLabel1.setText("Dziennik Elektroniczny");
+        dziennik_elektroniczny.setFont(new java.awt.Font("Italic", 3, 24)); // NOI18N
+        dziennik_elektroniczny.setForeground(new java.awt.Color(0, 153, 51));
+        dziennik_elektroniczny.setText("Dziennik Elektroniczny");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(7, 259, 0, 0);
-        jPanel1.add(jLabel1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(7, 354, 0, 0);
+        panel1.add(dziennik_elektroniczny, gridBagConstraints);
 
-        jPanel2.setLayout(new java.awt.GridBagLayout());
+        panel2.setLayout(new java.awt.GridBagLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pl/projekt5/views/Grafiki/school_bus.jpg"))); // NOI18N
-        jLabel2.setText("jLabel2");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = -37;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 13, 0);
-        jPanel2.add(jLabel2, gridBagConstraints);
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pl/projekt5/views/Grafiki/jasiu.jpg"))); // NOI18N
-        jLabel3.setText("jLabel3");
+        jasiu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pl/projekt5/views/Grafiki/jasiu.jpg"))); // NOI18N
+        jasiu.setText("jLabel3");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = -38;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = -37;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 80, 13, 0);
-        jPanel2.add(jLabel3, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(12, 107, 13, 0);
+        panel2.add(jasiu, gridBagConstraints);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pl/projekt5/views/Grafiki/tablica.jpg"))); // NOI18N
-        jLabel4.setText("jLabel4");
+        tablica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pl/projekt5/views/Grafiki/tablica.jpg"))); // NOI18N
+        tablica.setText("jLabel4");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = -39;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 78, 13, 0);
-        jPanel2.add(jLabel4, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(12, 77, 13, 0);
+        panel2.add(tablica, gridBagConstraints);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pl/projekt5/views/Grafiki/witaj_szkolo.jpg"))); // NOI18N
-        jLabel5.setText("jLabel5");
+        witaj_szkolo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pl/projekt5/views/Grafiki/witaj_szkolo.jpg"))); // NOI18N
+        witaj_szkolo.setText("jLabel5");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = -41;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 74, 13, 10);
-        jPanel2.add(jLabel5, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(12, 74, 13, 74);
+        panel2.add(witaj_szkolo, gridBagConstraints);
+
+        wybor_klasy.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "wybór klasy" }));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 59;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 83, 0, 0);
+        panel2.add(wybor_klasy, gridBagConstraints);
+
+        wybor_przedmiotu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "wybór przedmiotu" }));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(23, 83, 0, 0);
+        panel2.add(wybor_przedmiotu, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -129,18 +137,18 @@ public class view extends javax.swing.JFrame {
         gridBagConstraints.ipady = 13;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
-        jPanel1.add(jPanel2, gridBagConstraints);
+        panel1.add(panel2, gridBagConstraints);
 
-        jPanel3.setLayout(new java.awt.GridBagLayout());
+        panel3.setLayout(new java.awt.GridBagLayout());
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("Klasa:");
+        klasa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        klasa.setText("Klasa:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(11, 34, 0, 0);
-        jPanel3.add(jLabel6, gridBagConstraints);
+        panel3.add(klasa, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -148,16 +156,16 @@ public class view extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 78;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(11, 10, 11, 0);
-        jPanel3.add(jTextField1, gridBagConstraints);
+        panel3.add(klasa_text, gridBagConstraints);
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("Nauczyciel:");
+        nauczyciel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nauczyciel.setText("Nauczyciel:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(11, 10, 0, 0);
-        jPanel3.add(jLabel7, gridBagConstraints);
+        panel3.add(nauczyciel, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
@@ -165,16 +173,16 @@ public class view extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 109;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(11, 10, 11, 0);
-        jPanel3.add(jTextField2, gridBagConstraints);
+        panel3.add(nauczyciel_text, gridBagConstraints);
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setText("Wychowawca: ");
+        wychowawca.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        wychowawca.setText("Wychowawca: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(11, 18, 0, 0);
-        jPanel3.add(jLabel8, gridBagConstraints);
+        panel3.add(wychowawca, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
@@ -182,22 +190,16 @@ public class view extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 90;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(11, 10, 11, 0);
-        jPanel3.add(jTextField3, gridBagConstraints);
+        panel3.add(wychowawca_text, gridBagConstraints);
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel9.setText("Rok szkolny:");
+        rok_szkolny.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rok_szkolny.setText("Rok szkolny:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(11, 21, 0, 0);
-        jPanel3.add(jLabel9, gridBagConstraints);
-
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
+        panel3.add(rok_szkolny, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 0;
@@ -205,192 +207,88 @@ public class view extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 100;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(11, 18, 11, 75);
-        jPanel3.add(jTextField4, gridBagConstraints);
+        panel3.add(rok_szkolny_text, gridBagConstraints);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "nr", "Imię i nazwisko", "Spr.", "Kart.", "Odp.", "Obecnosc", "I semestr", "Spr.", "Kart.", "Odp.", "Obecnosc", "Koniec roku"
+                "Nr", "Imię i nazwisko", "Spr.", "Kart.", "Odp.", "Obecność", "Sem. I", "Spr.", "Kart.", "Odp.", "Obecność", "Koniec roku"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        scroll_panel.setViewportView(tabela);
 
-        jMenu1.setText("Wybór klasy");
-        jMenuBar1.add(jMenu1);
+        opcje.setText("Opcje");
 
-        jMenu2.setText("Wybór przedmiotu");
-        jMenuBar1.add(jMenu2);
+        opcje_dodaj.setText("dodaj");
 
-        jMenu3.setText("Opcje");
+        opcje_dodaj_klase.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
+        opcje_dodaj_klase.setText("Klasę");
+        opcje_dodaj.add(opcje_dodaj_klase);
 
-        jMenu4.setText("dodaj");
+        opcje_dodaj_ucznia.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
+        opcje_dodaj_ucznia.setText("Ucznia");
+        opcje_dodaj.add(opcje_dodaj_ucznia);
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
-        jMenuItem1.setText("Klasę");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem1);
+        opcje_dodaj_przedmiot.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
+        opcje_dodaj_przedmiot.setText("Przedmiot");
+        opcje_dodaj.add(opcje_dodaj_przedmiot);
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
-        jMenuItem2.setText("Ucznia");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem2);
+        opcje.add(opcje_dodaj);
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
-        jMenuItem3.setText("Przedmiot");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem3);
+        opcje_zmien.setText("zmień");
 
-        jMenu3.add(jMenu4);
+        opcje_zmien_nauczyciela.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
+        opcje_zmien_nauczyciela.setText("nauczyciela");
+        opcje_zmien.add(opcje_zmien_nauczyciela);
 
-        jMenu5.setText("zmień");
+        opcje_zmien_wychowawce.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
+        opcje_zmien_wychowawce.setText("wychowawcę");
+        opcje_zmien.add(opcje_zmien_wychowawce);
 
-        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
-        jMenuItem4.setText("nauczyciela");
-        jMenu5.add(jMenuItem4);
+        opcje.add(opcje_zmien);
 
-        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
-        jMenuItem5.setText("wychowawcę");
-        jMenu5.add(jMenuItem5);
+        menu.add(opcje);
 
-        jMenu3.add(jMenu5);
+        usun.setText("Usuń");
 
-        jMenuBar1.add(jMenu3);
+        usun_nauczyciela.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
+        usun_nauczyciela.setText("nauczyciela");
+        usun.add(usun_nauczyciela);
 
-        jMenu6.setText("Usuń");
+        usun_ucznia.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
+        usun_ucznia.setText("ucznia");
+        usun.add(usun_ucznia);
 
-        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
-        jMenuItem6.setText("nauczyciela");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
-            }
-        });
-        jMenu6.add(jMenuItem6);
+        usun_klase.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
+        usun_klase.setText("klasę");
+        usun.add(usun_klase);
 
-        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
-        jMenuItem7.setText("ucznia");
-        jMenu6.add(jMenuItem7);
+        menu.add(usun);
 
-        jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
-        jMenuItem8.setText("klasę");
-        jMenu6.add(jMenuItem8);
-
-        jMenuBar1.add(jMenu6);
-
-        jMenu7.setText("Zapisz");
-
-        jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F8, 0));
-        jMenuItem9.setText("Zapisz dane do bazy");
-        jMenu7.add(jMenuItem9);
-
-        jMenuBar1.add(jMenu7);
-
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(menu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addComponent(jScrollPane1)
+            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(scroll_panel)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE))
+                .addComponent(scroll_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -428,40 +326,37 @@ public class view extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    public javax.swing.JLabel dziennik_elektroniczny;
+    public javax.swing.JLabel jasiu;
+    public javax.swing.JLabel klasa;
+    public javax.swing.JTextField klasa_text;
+    public javax.swing.JMenuBar menu;
+    public javax.swing.JLabel nauczyciel;
+    public javax.swing.JTextField nauczyciel_text;
+    public javax.swing.JMenu opcje;
+    public javax.swing.JMenu opcje_dodaj;
+    public javax.swing.JMenuItem opcje_dodaj_klase;
+    public javax.swing.JMenuItem opcje_dodaj_przedmiot;
+    public javax.swing.JMenuItem opcje_dodaj_ucznia;
+    public javax.swing.JMenu opcje_zmien;
+    public javax.swing.JMenuItem opcje_zmien_nauczyciela;
+    public javax.swing.JMenuItem opcje_zmien_wychowawce;
+    public javax.swing.JPanel panel1;
+    public javax.swing.JPanel panel2;
+    public javax.swing.JPanel panel3;
+    public javax.swing.JLabel rok_szkolny;
+    public javax.swing.JTextField rok_szkolny_text;
+    public javax.swing.JScrollPane scroll_panel;
+    public javax.swing.JTable tabela;
+    public javax.swing.JLabel tablica;
+    public javax.swing.JMenu usun;
+    public javax.swing.JMenuItem usun_klase;
+    public javax.swing.JMenuItem usun_nauczyciela;
+    public javax.swing.JMenuItem usun_ucznia;
+    public javax.swing.JLabel witaj_szkolo;
+    public javax.swing.JComboBox wybor_klasy;
+    public javax.swing.JComboBox wybor_przedmiotu;
+    public javax.swing.JLabel wychowawca;
+    public javax.swing.JTextField wychowawca_text;
     // End of variables declaration//GEN-END:variables
 }
