@@ -14,13 +14,19 @@ public class Nauczyciel {
     public final int id;
     public String imie;
     public String nazwisko;
-    public Klasa klasa;
+    //public Klasa klasa;
     public String haslo;
     
-    public Nauczyciel(int id, String imie, String nazwisko, Klasa kl) {
+    /*public Nauczyciel(int id, String imie, String nazwisko, Klasa kl) {
         this.id = id;
         this.imie = imie;
         this.nazwisko = nazwisko;
         this.klasa = kl;
+    }*/
+    
+    public Nauczyciel(int id, String imie, String nazwisko) {
+        this.id = id;
+        this.imie = imie;
+        this.nazwisko = nazwisko;
     }
 }

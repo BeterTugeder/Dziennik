@@ -31,7 +31,7 @@ public class NauczycielModel implements Model {
         conn = c;
     }
     
-    public void add(Nauczyciel n, String haslo) {
+    public void add(Nauczyciel n, String haslo, int klasa) {
         MessageDigest md = null;
         try {
             md = MessageDigest.getInstance("SHA1");
@@ -50,8 +50,35 @@ public class NauczycielModel implements Model {
             //stmt.executeUpdate();
             stmt.setString(1, n.imie);
             stmt.setString(2, n.nazwisko);
-            stmt.setInt(3, n.klasa.id);
+            stmt.setInt(3, klasa);
             stmt.setString(4, haslo);
+            stmt.executeUpdate();
+            stmt.close();
+        } catch (SQLException e) {
+            ExceptionHandler.handle(e, ExceptionHandler.MESSAGE);
+        }
+    }
+    
+    public void add(Nauczyciel n, String haslo) {
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("SHA1");
+        }catch(NoSuchAlgorithmException e) {
+            ExceptionHandler.handle(e, ExceptionHandler.MESSAGE);
+        } 
+        try {
+            haslo = new String( md.digest(haslo.getBytes("UTF-8")) );
+        }catch(UnsupportedEncodingException e) {
+            ExceptionHandler.handle(e, ExceptionHandler.MESSAGE);
+        } 
+        
+        PreparedStatement stmt;
+        try {
+            stmt = conn.prepareStatement("INSERT INTO nauczyciele(imie, nazwisko, haslo) VALUES (?, ?, ?)");
+            //stmt.executeUpdate();
+            stmt.setString(1, n.imie);
+            stmt.setString(2, n.nazwisko);
+            stmt.setString(3, haslo);
             stmt.executeUpdate();
             stmt.close();
         } catch (SQLException e) {
@@ -65,9 +92,9 @@ public class NauczycielModel implements Model {
         List result = new ArrayList<Nauczyciel>();
         try {
             stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-            rs = stmt.executeQuery("SELECT nauczyciele_id, imie, nazwisko, klasy.klasy_id, nazwa FROM nauczyciele, klasy WHERE klasy.klasy_id=nauczyciele.klasy_id");
+            rs = stmt.executeQuery("SELECT nauczyciele_id, imie, nazwisko FROM nauczyciele");
             while(rs.next()) {
-                result.add( new Nauczyciel(rs.getInt(1), rs.getString(2), rs.getString(3), new Klasa( rs.getInt(4), rs.getString(5) ) )) ;
+                result.add( new Nauczyciel(rs.getInt(1), rs.getString(2), rs.getString(3) )) ;
             }
         } catch (SQLException e) {
             ExceptionHandler.handle(e, ExceptionHandler.MESSAGE);
@@ -81,9 +108,9 @@ public class NauczycielModel implements Model {
         Nauczyciel result = null;
         try {
             stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-            rs = stmt.executeQuery("SELECT nauczyciele_id, imie, nazwisko, klasy_id, nazwa FROM nauczyciele, klasy WHERE klasy.klasy_id=nauczyciele.klasy_id AND uczniowie_id=" + id + " LIMIT 1");
+            rs = stmt.executeQuery("SELECT nauczyciele_id, imie, nazwisko, klasy_id, nazwa FROM nauczyciele WHERE  uczniowie_id=" + id + " LIMIT 1");
             if(rs.next()) { //jezeli wynik pusty, to metoda zwraca null
-                result = new Nauczyciel(rs.getInt(1), rs.getString(2), rs.getString(3), new Klasa( rs.getInt(4), rs.getString(5) ) );
+                result = new Nauczyciel(rs.getInt(1), rs.getString(2), rs.getString(3) );
             }
         } catch (SQLException e) {
             ExceptionHandler.handle(e, ExceptionHandler.MESSAGE);
@@ -105,11 +132,26 @@ public class NauczycielModel implements Model {
     public void update(Nauczyciel n) {
         PreparedStatement stmt;
         try {
+            stmt = conn.prepareStatement("UPDATE nauczyciele SET imie=?, nazwisko=? WHERE nauczyciele_id=?");
+            //stmt.executeUpdate();
+            stmt.setString(1, n.imie);
+            stmt.setString(2, n.nazwisko);
+            stmt.setInt(3, n.id);
+            stmt.executeUpdate();
+            stmt.close();
+        } catch (SQLException e) {
+            ExceptionHandler.handle(e, ExceptionHandler.MESSAGE);
+        }
+    }
+
+    public void update(Nauczyciel n, int klasa) {
+        PreparedStatement stmt;
+        try {
             stmt = conn.prepareStatement("UPDATE nauczyciele SET imie=?, nazwisko=?, klasy_id=? WHERE nauczyciele_id=?");
             //stmt.executeUpdate();
             stmt.setString(1, n.imie);
             stmt.setString(2, n.nazwisko);
-            stmt.setInt(3, n.klasa.id);
+            stmt.setInt(3, klasa);
             stmt.setInt(4, n.id);
             stmt.executeUpdate();
             stmt.close();

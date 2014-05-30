@@ -6,7 +6,11 @@
 
 package pl.projekt5.models;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import pl.projekt5.handlers.ExceptionHandler;
@@ -15,7 +19,7 @@ import pl.projekt5.handlers.ExceptionHandler;
  *
  * @author Kuba
  */
-public class UczenModel implements Model {
+public class PrzedmiotModel implements Model {
     
     static Connection conn = null;
 
@@ -23,13 +27,12 @@ public class UczenModel implements Model {
         conn = c;
     }
     
-    public void add(Uczen u) {
+    public void add(Przedmiot p) {
         PreparedStatement stmt;
         try {
-            stmt = conn.prepareStatement("INSERT INTO uczniowie(imie, nazwisko) VALUES (?, ?)");
+            stmt = conn.prepareStatement("INSERT INTO przedmioty(nazwa) VALUES (?)");
             //stmt.executeUpdate();
-            stmt.setString(1, u.imie);
-            stmt.setString(2, u.nazwisko);
+            stmt.setString(1, p.nazwa);
             stmt.executeUpdate();
             stmt.close();
         } catch (SQLException e) {
@@ -37,14 +40,13 @@ public class UczenModel implements Model {
         }
     }
     
-    public void add(Uczen u, int klasa) {
+    public void add(Przedmiot p, int nauczyciel) {
         PreparedStatement stmt;
         try {
-            stmt = conn.prepareStatement("INSERT INTO uczniowie(imie, nazwisko, klasy_id) VALUES (?, ?, ?)");
+            stmt = conn.prepareStatement("INSERT INTO przedmioty(nazwa, nauczyciele_id) VALUES (?, ?)");
             //stmt.executeUpdate();
-            stmt.setString(1, u.imie);
-            stmt.setString(2, u.nazwisko);
-            stmt.setInt(3, klasa);
+            stmt.setString(1, p.nazwa);
+            stmt.setInt(2, nauczyciel);
             stmt.executeUpdate();
             stmt.close();
         } catch (SQLException e) {
@@ -52,15 +54,15 @@ public class UczenModel implements Model {
         }
     }
     
-    public List<Uczen> getAll() {
+    public List<Przedmiot> getAll() {
         Statement stmt;
         ResultSet rs;
-        List result = new ArrayList<Uczen>();
+        List result = new ArrayList<Przedmiot>();
         try {
             stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-            rs = stmt.executeQuery("SELECT uczniowie_id, imie, nazwisko FROM uczniowie");
+            rs = stmt.executeQuery("SELECT przedmioty_id, nazwa FROM przedmioty");
             while(rs.next()) {
-                result.add( new Uczen(rs.getInt(1), rs.getString(2), rs.getString(3) )) ;
+                result.add( new Przedmiot(rs.getInt(1), rs.getString(2) )) ;
             }
         } catch (SQLException e) {
             ExceptionHandler.handle(e, ExceptionHandler.MESSAGE);
@@ -68,15 +70,15 @@ public class UczenModel implements Model {
         return result;
     }
     
-    public Uczen get(int id) {
+    public Przedmiot get(int id) {
         Statement stmt;
         ResultSet rs;
-        Uczen result = null;
+        Przedmiot result = null;
         try {
             stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-            rs = stmt.executeQuery("SELECT uczniowie_id, imie, nazwisko FROM uczniowie WHERE uczniowie_id=" + id + " LIMIT 1");
+            rs = stmt.executeQuery("SELECT przedmioty_id, nazwa FROM przedmioty WHERE przedmioty_id=" + id + " LIMIT 1");
             if(rs.next()) { //jezeli wynik pusty, to metoda zwraca null
-                result = new Uczen(rs.getInt(1), rs.getString(2), rs.getString(3) );
+                result = new Przedmiot(rs.getInt(1), rs.getString(2) );
             }
         } catch (SQLException e) {
             ExceptionHandler.handle(e, ExceptionHandler.MESSAGE);
@@ -88,21 +90,19 @@ public class UczenModel implements Model {
         Statement stmt;
         try {
             stmt = conn.createStatement();
-            stmt.executeUpdate("DELETE FROM uczniowie");
+            stmt.executeUpdate("DELETE FROM przedmioty");
             stmt.close();
         } catch (SQLException e) {
             ExceptionHandler.handle(e, ExceptionHandler.MESSAGE);
         }
     }
 
-    public void update(Uczen u) {
+    public void update(Przedmiot p) {
         PreparedStatement stmt;
         try {
-            stmt = conn.prepareStatement("UPDATE uczniowie SET imie=?, nazwisko=? WHERE uczniowie_id=?");
+            stmt = conn.prepareStatement("UPDATE przedmioty SET nazwa=? WHERE przedmioty_id=?");
             //stmt.executeUpdate();
-            stmt.setString(1, u.imie);
-            stmt.setString(2, u.nazwisko);
-            stmt.setInt(3, u.id);
+            stmt.setString(1, p.nazwa);
             stmt.executeUpdate();
             stmt.close();
         } catch (SQLException e) {
@@ -110,15 +110,14 @@ public class UczenModel implements Model {
         }
     }
 
-    public void update(Uczen u, int klasa) {
+    public void update(Przedmiot p, int nauczyciel) {
         PreparedStatement stmt;
         try {
-            stmt = conn.prepareStatement("UPDATE uczniowie SET imie=?, nazwisko=?, klasy_id=? WHERE uczniowie_id=?");
+            stmt = conn.prepareStatement("UPDATE przedmioty SET nazwa=?, nauczyciele_id=? WHERE przedmioty_id=?");
             //stmt.executeUpdate();
-            stmt.setString(1, u.imie);
-            stmt.setString(2, u.nazwisko);
-            stmt.setInt(3, klasa);
-            stmt.setInt(4, u.id);
+            stmt.setString(1, p.nazwa);
+            stmt.setInt(2, nauczyciel);
+            stmt.setInt(3, p.id);
             stmt.executeUpdate();
             stmt.close();
         } catch (SQLException e) {
@@ -126,11 +125,11 @@ public class UczenModel implements Model {
         }
     }
 
-    public void delete(Uczen u) {
+    public void delete(Przedmiot p) {
         Statement stmt;
         try {
             stmt = conn.createStatement();
-            stmt.executeUpdate("DELETE FROM uczniowie WHERE uczniowie_id=" + u.id);
+            stmt.executeUpdate("DELETE FROM przedmioty WHERE przedmioty_id=" + p.id);
             stmt.close();
         } catch (SQLException e) {
             ExceptionHandler.handle(e, ExceptionHandler.MESSAGE);

@@ -10,16 +10,15 @@ package pl.projekt5.models;
  *
  * @author Kuba
  */
-public class Uczen {
+public class Ocena {
     public final int id;
-    public String imie;
-    public String nazwisko;
-    //public Klasa klasa;
+    /*public Uczen uczen;
+    public Przedmiot przedmiot;
+    public Kolumna kolumna;*/
+    public int ocena;
 
-    public Uczen(int id, String imie, String nazwisko/*, Klasa kl*/) {
+    public Ocena(int id, int ocena) {
         this.id = id;
-        this.imie = imie;
-        this.nazwisko = nazwisko;
-        //this.klasa = kl;
+        this.ocena = ocena;
     }
 }
