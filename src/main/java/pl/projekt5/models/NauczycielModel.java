@@ -108,7 +108,7 @@ public class NauczycielModel implements Model {
         Nauczyciel result = null;
         try {
             stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-            rs = stmt.executeQuery("SELECT nauczyciele_id, imie, nazwisko, klasy_id, nazwa FROM nauczyciele WHERE  nauczyciele_id=" + id + " LIMIT 1");
+            rs = stmt.executeQuery("SELECT nauczyciele_id, imie, nazwisko FROM nauczyciele WHERE  nauczyciele_id=" + id + " LIMIT 1");
             if(rs.next()) { //jezeli wynik pusty, to metoda zwraca null
                 result = new Nauczyciel(rs.getInt(1), rs.getString(2), rs.getString(3) );
             }
@@ -124,7 +124,7 @@ public class NauczycielModel implements Model {
         Nauczyciel result = null;
         try {
             stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-            rs = stmt.executeQuery("SELECT nauczyciele_id, imie, nazwisko, klasy_id, nazwa FROM nauczyciele WHERE  klasy_id=" + klasa + " LIMIT 1");
+            rs = stmt.executeQuery("SELECT nauczyciele_id, imie, nazwisko, klasy_id FROM nauczyciele WHERE  klasy_id=" + klasa + " LIMIT 1");
             if(rs.next()) { //jezeli wynik pusty, to metoda zwraca null
                 result = new Nauczyciel(rs.getInt(1), rs.getString(2), rs.getString(3) );
             }
