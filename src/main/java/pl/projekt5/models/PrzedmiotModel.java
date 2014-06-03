@@ -86,6 +86,22 @@ public class PrzedmiotModel implements Model {
         return result;
     }
     
+    public int get(int id, boolean forClass) {
+        Statement stmt;
+        ResultSet rs;
+        int result = 0;
+        try {
+            stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+            rs = stmt.executeQuery("SELECT nauczyciele_id FROM przedmioty WHERE  przedmioty_id=" + id + " LIMIT 1");
+            if(rs.next()) { //jezeli wynik pusty, to metoda zwraca null
+                result = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            ExceptionHandler.handle(e, ExceptionHandler.MESSAGE);
+        }
+        return result;
+    }
+    
     public void truncate() {
         Statement stmt;
         try {

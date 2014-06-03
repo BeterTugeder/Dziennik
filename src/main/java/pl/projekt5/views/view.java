@@ -5,6 +5,13 @@
  */
 
 package pl.projekt5.views;
+import java.util.ListIterator;
+import pl.projekt5.models.Klasa;
+import pl.projekt5.models.KlasaModel;
+import pl.projekt5.models.ModelFactory;
+import pl.projekt5.models.NauczycielModel;
+import pl.projekt5.models.Przedmiot;
+import pl.projekt5.models.PrzedmiotModel;
 
 /**
  *
@@ -17,6 +24,7 @@ public class view extends javax.swing.JFrame {
      */
     public view() {
         initComponents();
+        wypelnij_combobox();
     }
 
     /**
@@ -112,6 +120,11 @@ public class view extends javax.swing.JFrame {
         panel2.add(witaj_szkolo, gridBagConstraints);
 
         wybor_klasy.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "wybór klasy" }));
+        wybor_klasy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wybor_klasyActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -121,6 +134,11 @@ public class view extends javax.swing.JFrame {
         panel2.add(wybor_klasy, gridBagConstraints);
 
         wybor_przedmiotu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "wybór przedmiotu" }));
+        wybor_przedmiotu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wybor_przedmiotuActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -149,6 +167,12 @@ public class view extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(11, 34, 0, 0);
         panel3.add(klasa, gridBagConstraints);
+
+        klasa_text.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                klasa_textActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -218,6 +242,20 @@ public class view extends javax.swing.JFrame {
             }
         ));
         scroll_panel.setViewportView(tabela);
+        if (tabela.getColumnModel().getColumnCount() > 0) {
+            tabela.getColumnModel().getColumn(0).setHeaderValue("Nr");
+            tabela.getColumnModel().getColumn(1).setHeaderValue("Imię i nazwisko");
+            tabela.getColumnModel().getColumn(2).setHeaderValue("Spr.");
+            tabela.getColumnModel().getColumn(3).setHeaderValue("Kart.");
+            tabela.getColumnModel().getColumn(4).setHeaderValue("Odp.");
+            tabela.getColumnModel().getColumn(5).setHeaderValue("Obecność");
+            tabela.getColumnModel().getColumn(6).setHeaderValue("Sem. I");
+            tabela.getColumnModel().getColumn(7).setHeaderValue("Spr.");
+            tabela.getColumnModel().getColumn(8).setHeaderValue("Kart.");
+            tabela.getColumnModel().getColumn(9).setHeaderValue("Odp.");
+            tabela.getColumnModel().getColumn(10).setHeaderValue("Obecność");
+            tabela.getColumnModel().getColumn(11).setHeaderValue("Koniec roku");
+        }
 
         opcje.setText("Opcje");
 
@@ -225,6 +263,11 @@ public class view extends javax.swing.JFrame {
 
         opcje_dodaj_klase.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
         opcje_dodaj_klase.setText("Klasę");
+        opcje_dodaj_klase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcje_dodaj_klaseActionPerformed(evt);
+            }
+        });
         opcje_dodaj.add(opcje_dodaj_klase);
 
         opcje_dodaj_ucznia.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
@@ -255,6 +298,11 @@ public class view extends javax.swing.JFrame {
 
         usun_nauczyciela.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
         usun_nauczyciela.setText("nauczyciela");
+        usun_nauczyciela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usun_nauczycielaActionPerformed(evt);
+            }
+        });
         usun.add(usun_nauczyciela);
 
         usun_ucznia.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
@@ -290,6 +338,66 @@ public class view extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void wybor_klasyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wybor_klasyActionPerformed
+        klasa_text.setText(wybor_klasy.getSelectedItem().toString());
+        
+        ModelFactory m = ModelFactory.getInstance();
+        KlasaModel klasa1 = (KlasaModel)m.getModel("KlasaModel");
+        ListIterator<Klasa> it = klasa1.getAll().listIterator();
+        int id=0;
+        while(it.hasNext()){
+           if(it.next().nazwa.equals(wybor_klasy.getSelectedItem().toString())){
+               it.previous();
+               id = it.next().id;
+           }      
+        }
+        NauczycielModel nauczyciele = (NauczycielModel)m.getModel("NauczycielModel");
+        wychowawca_text.setText(nauczyciele.get(id, true).nazwisko+" "+nauczyciele.get(id, true).imie);
+    }//GEN-LAST:event_wybor_klasyActionPerformed
+
+    private void klasa_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_klasa_textActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_klasa_textActionPerformed
+
+    private void wybor_przedmiotuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wybor_przedmiotuActionPerformed
+        ModelFactory m = ModelFactory.getInstance();
+        PrzedmiotModel przedmiot1 = (PrzedmiotModel)m.getModel("PrzedmiotModel");
+        ListIterator<Przedmiot> it = przedmiot1.getAll().listIterator();
+        int idd=0;
+        while(it.hasNext()){
+           if(it.next().nazwa.equals(wybor_przedmiotu.getSelectedItem().toString())){
+               it.previous();
+               idd = it.next().id;
+           }      
+        }
+        NauczycielModel nauczyciele = (NauczycielModel)m.getModel("NauczycielModel");
+        idd = przedmiot1.get(idd, true);
+      
+        nauczyciel_text.setText(nauczyciele.get(idd).nazwisko+" "+nauczyciele.get(idd).imie);  
+    }//GEN-LAST:event_wybor_przedmiotuActionPerformed
+
+    private void usun_nauczycielaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usun_nauczycielaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usun_nauczycielaActionPerformed
+
+    private void opcje_dodaj_klaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcje_dodaj_klaseActionPerformed
+       
+    }//GEN-LAST:event_opcje_dodaj_klaseActionPerformed
+
+    private void wypelnij_combobox(){
+        ModelFactory m = ModelFactory.getInstance();
+        KlasaModel klasa1 = (KlasaModel)m.getModel("KlasaModel");
+        ListIterator<Klasa> it = klasa1.getAll().listIterator();
+        while(it.hasNext()){
+            wybor_klasy.addItem(it.next().nazwa);
+        }
+        
+        PrzedmiotModel przedmiot = (PrzedmiotModel)m.getModel("PrzedmiotModel");
+        ListIterator<Przedmiot> it3 = przedmiot.getAll().listIterator();
+        while(it3.hasNext()){
+            wybor_przedmiotu.addItem(it3.next().nazwa);
+        }  
+    }
     /**
      * @param args the command line arguments
      */
@@ -321,6 +429,7 @@ public class view extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new view().setVisible(true);
+                
             }
         });
     }
