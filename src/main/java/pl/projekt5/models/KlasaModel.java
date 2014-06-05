@@ -67,6 +67,7 @@ public class KlasaModel implements Model {
         }
         return result;
     }
+
     
     public void truncate() {
         Statement stmt;

@@ -6,6 +6,13 @@ import pl.projekt5.models.ModelFactory;
 
 import pl.projekt5.models.KlasaModel;
 import pl.projekt5.models.Klasa;
+import pl.projekt5.models.NauczycielModel;
+import pl.projekt5.models.Nauczyciel;
+import pl.projekt5.models.Przedmiot;
+import pl.projekt5.models.PrzedmiotModel;
+import pl.projekt5.models.Uczen;
+import pl.projekt5.models.UczenModel;
+
 /**
 * Hello world!
 *
@@ -35,10 +42,28 @@ public class App
         e = klasa.get(9);
         System.out.printf("\n***\n%d\t%s\n", e.id, e.nazwa);
         
-        //UczniowieModel uczniowie = (UczniowieModel)m.getModel("UczniowieModel");
+      
+      
+        
+        
+        /*
+       PrzedmiotModel przedmioty = (PrzedmiotModel)m.getModel("PrzedmiotModel");
+        Przedmiot aa = new Przedmiot(91, "matematyka");
+        Przedmiot bb = new Przedmiot(92, "fizyka");
+        Przedmiot cc = new Przedmiot(93, "informatyka");
+        przedmioty.add(aa, 1);
+        przedmioty.add(cc, 2);
+        przedmioty.add(bb, 3);
+        UczenModel uczniowie = (UczenModel)m.getModel("UczenModel");
+        Uczen aaa = new Uczen(1, "Agnieszka", "Madra");
+        Uczen bbb = new Uczen(2, "Adam", "Kowalewski");
+        uczniowie.add(aaa, 9);
+        uczniowie.add(bbb, 9);*/
         
         /*uczniowie.add("Jan", "Kowalski", klasa.get(9));
         uczniowie.add("Jan", "Nowak", klasa.get(9));*/
+        
+        
         
         /*ListIterator<Uczen> uit = uczniowie.get().listIterator();
         Uczen ue = null;

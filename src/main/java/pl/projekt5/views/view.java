@@ -5,13 +5,18 @@
  */
 
 package pl.projekt5.views;
+import pl.projekt5.views.Opcje;
 import java.util.ListIterator;
+import static javax.swing.JOptionPane.showMessageDialog;
 import pl.projekt5.models.Klasa;
 import pl.projekt5.models.KlasaModel;
 import pl.projekt5.models.ModelFactory;
+import pl.projekt5.models.Nauczyciel;
 import pl.projekt5.models.NauczycielModel;
 import pl.projekt5.models.Przedmiot;
 import pl.projekt5.models.PrzedmiotModel;
+import pl.projekt5.models.Uczen;
+import pl.projekt5.models.UczenModel;
 
 /**
  *
@@ -61,7 +66,7 @@ public class view extends javax.swing.JFrame {
         opcje_dodaj = new javax.swing.JMenu();
         opcje_dodaj_klase = new javax.swing.JMenuItem();
         opcje_dodaj_ucznia = new javax.swing.JMenuItem();
-        opcje_dodaj_przedmiot = new javax.swing.JMenuItem();
+        opcje_dodaj_nauczyciela = new javax.swing.JMenuItem();
         opcje_zmien = new javax.swing.JMenu();
         opcje_zmien_nauczyciela = new javax.swing.JMenuItem();
         opcje_zmien_wychowawce = new javax.swing.JMenuItem();
@@ -272,11 +277,21 @@ public class view extends javax.swing.JFrame {
 
         opcje_dodaj_ucznia.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
         opcje_dodaj_ucznia.setText("Ucznia");
+        opcje_dodaj_ucznia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcje_dodaj_uczniaActionPerformed(evt);
+            }
+        });
         opcje_dodaj.add(opcje_dodaj_ucznia);
 
-        opcje_dodaj_przedmiot.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
-        opcje_dodaj_przedmiot.setText("Przedmiot");
-        opcje_dodaj.add(opcje_dodaj_przedmiot);
+        opcje_dodaj_nauczyciela.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F8, 0));
+        opcje_dodaj_nauczyciela.setText("Nauczyciela");
+        opcje_dodaj_nauczyciela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcje_dodaj_nauczycielaActionPerformed(evt);
+            }
+        });
+        opcje_dodaj.add(opcje_dodaj_nauczyciela);
 
         opcje.add(opcje_dodaj);
 
@@ -288,6 +303,11 @@ public class view extends javax.swing.JFrame {
 
         opcje_zmien_wychowawce.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
         opcje_zmien_wychowawce.setText("wychowawcę");
+        opcje_zmien_wychowawce.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcje_zmien_wychowawceActionPerformed(evt);
+            }
+        });
         opcje_zmien.add(opcje_zmien_wychowawce);
 
         opcje.add(opcje_zmien);
@@ -307,10 +327,20 @@ public class view extends javax.swing.JFrame {
 
         usun_ucznia.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
         usun_ucznia.setText("ucznia");
+        usun_ucznia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usun_uczniaActionPerformed(evt);
+            }
+        });
         usun.add(usun_ucznia);
 
         usun_klase.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
         usun_klase.setText("klasę");
+        usun_klase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usun_klaseActionPerformed(evt);
+            }
+        });
         usun.add(usun_klase);
 
         menu.add(usun);
@@ -352,6 +382,7 @@ public class view extends javax.swing.JFrame {
            }      
         }
         NauczycielModel nauczyciele = (NauczycielModel)m.getModel("NauczycielModel");
+
         wychowawca_text.setText(nauczyciele.get(id, true).nazwisko+" "+nauczyciele.get(id, true).imie);
     }//GEN-LAST:event_wybor_klasyActionPerformed
 
@@ -373,16 +404,143 @@ public class view extends javax.swing.JFrame {
         NauczycielModel nauczyciele = (NauczycielModel)m.getModel("NauczycielModel");
         idd = przedmiot1.get(idd, true);
       
+        if(nauczyciele.get(idd).imie.equals(null))
+            showMessageDialog(null, "Nie ma nauczyciela!");  
+        
         nauczyciel_text.setText(nauczyciele.get(idd).nazwisko+" "+nauczyciele.get(idd).imie);  
     }//GEN-LAST:event_wybor_przedmiotuActionPerformed
 
     private void usun_nauczycielaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usun_nauczycielaActionPerformed
-        // TODO add your handling code here:
+        Opcje okno = new Opcje();
+        okno.tytul.setText("Usun nauczyciela");
+        okno.jLabel3.setVisible(false);
+        okno.haslo_pole.setVisible(false);
+        okno.haslo_label.setVisible(false);
+        okno.jCheckBox1.setVisible(false);
+        okno.jComboBox3.setVisible(false);
+        okno.jLabel1.setVisible(false);
+        okno.jTextField3.setVisible(false);
+         okno.jLabel2.setVisible(false);
+        okno.jTextField1.setVisible(false);
+        okno.jTextField2.setVisible(false);
+        okno.combo1.setVisible(true);
+        okno.opcja.setText("3");
+        
+        ModelFactory m = ModelFactory.getInstance();
+        NauczycielModel nauczyciel1 = (NauczycielModel)m.getModel("NauczycielModel");
+        ListIterator<Nauczyciel> it = nauczyciel1.getAll().listIterator();
+        while(it.hasNext()){
+            Nauczyciel nauczyciel2 = it.next();
+            okno.combo1.addItem(nauczyciel2.nazwisko+" "+nauczyciel2.imie);
+        }
+        
+        
+        okno.setVisible(true);
+        dispose();
     }//GEN-LAST:event_usun_nauczycielaActionPerformed
 
     private void opcje_dodaj_klaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcje_dodaj_klaseActionPerformed
-       
+        Opcje okno = new Opcje();
+        okno.tytul.setText("Dodaj klase");
+        okno.jLabel2.setText("Nazwa");
+        okno.jLabel3.setVisible(false);
+        okno.haslo_pole.setVisible(false);
+        okno.haslo_label.setVisible(false);
+        okno.jCheckBox1.setVisible(false);
+        okno.jComboBox3.setVisible(false);
+        okno.jLabel1.setVisible(false);
+        okno.jTextField3.setVisible(false);
+        okno.jTextField2.setVisible(false);
+        okno.combo1.setVisible(false);
+        okno.opcja.setText("1");
+
+        okno.setVisible(true);
+        dispose();
+
     }//GEN-LAST:event_opcje_dodaj_klaseActionPerformed
+
+    private void opcje_dodaj_nauczycielaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcje_dodaj_nauczycielaActionPerformed
+        Opcje okno = new Opcje();
+        okno.tytul.setText("Dodaj nauczyciela");
+        okno.jLabel2.setText("Imie");
+        okno.jLabel3.setText("Nazwisko");
+        okno.combo1.setVisible(false);
+        okno.opcja.setText("0");
+        
+        okno.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_opcje_dodaj_nauczycielaActionPerformed
+
+    private void opcje_dodaj_uczniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcje_dodaj_uczniaActionPerformed
+        Opcje okno = new Opcje();
+        okno.tytul.setText("Dodaj ucznia");
+        okno.jLabel2.setText("Imie");
+        okno.jLabel3.setText("Nazwisko");
+        okno.jCheckBox1.setVisible(false);
+        okno.jLabel1.setVisible(false);
+        okno.jTextField3.setVisible(false);
+        okno.haslo_pole.setVisible(false);
+        okno.haslo_label.setVisible(false);
+        okno.jCheckBox1.setSelected(true);
+        okno.jComboBox3.setVisible(true);
+        okno.combo1.setVisible(false);
+        
+        okno.opcja.setText("2");
+        okno.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_opcje_dodaj_uczniaActionPerformed
+
+    private void usun_klaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usun_klaseActionPerformed
+        Opcje okno = new Opcje();
+        okno.tytul.setText("Usun klase");
+        okno.jLabel3.setVisible(false);
+        okno.haslo_pole.setVisible(false);
+        okno.haslo_label.setVisible(false);
+        okno.jCheckBox1.setVisible(false);
+        okno.jComboBox3.setVisible(false);
+        okno.jLabel1.setVisible(false);
+        okno.jTextField3.setVisible(false);
+         okno.jLabel2.setVisible(false);
+        okno.jTextField1.setVisible(false);
+        okno.jTextField2.setVisible(false);
+        okno.combo1.setVisible(true);
+        okno.opcja.setText("4");
+        
+        ModelFactory m = ModelFactory.getInstance();
+        KlasaModel klasa1 = (KlasaModel)m.getModel("KlasaModel");
+        ListIterator<Klasa> it = klasa1.getAll().listIterator();
+        while(it.hasNext()){
+            okno.combo1.addItem(it.next().nazwa);
+        }
+
+        okno.setVisible(true);
+        dispose();
+        
+    }//GEN-LAST:event_usun_klaseActionPerformed
+
+    private void usun_uczniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usun_uczniaActionPerformed
+        Opcje okno = new Opcje();
+        okno.tytul.setText("Usun ucznia");
+        okno.jLabel3.setVisible(false);
+        okno.haslo_pole.setVisible(false);
+        okno.haslo_label.setVisible(false);
+        okno.jCheckBox1.setVisible(false);
+        okno.jComboBox3.setVisible(true);
+        okno.jLabel1.setVisible(false);
+        okno.jTextField3.setVisible(false);
+        okno.jLabel2.setVisible(false);
+        okno.jTextField1.setVisible(false);
+        okno.jTextField2.setVisible(false);
+        okno.combo1.setVisible(true);
+        okno.opcja.setText("5");
+        
+        okno.setVisible(true);  
+        dispose();
+    }//GEN-LAST:event_usun_uczniaActionPerformed
+
+    private void opcje_zmien_wychowawceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcje_zmien_wychowawceActionPerformed
+
+    }//GEN-LAST:event_opcje_zmien_wychowawceActionPerformed
 
     private void wypelnij_combobox(){
         ModelFactory m = ModelFactory.getInstance();
@@ -445,7 +603,7 @@ public class view extends javax.swing.JFrame {
     public javax.swing.JMenu opcje;
     public javax.swing.JMenu opcje_dodaj;
     public javax.swing.JMenuItem opcje_dodaj_klase;
-    public javax.swing.JMenuItem opcje_dodaj_przedmiot;
+    private javax.swing.JMenuItem opcje_dodaj_nauczyciela;
     public javax.swing.JMenuItem opcje_dodaj_ucznia;
     public javax.swing.JMenu opcje_zmien;
     public javax.swing.JMenuItem opcje_zmien_nauczyciela;

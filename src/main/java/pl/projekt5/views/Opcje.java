@@ -6,6 +6,19 @@
 
 package pl.projekt5.views;
 
+import java.util.ListIterator;
+import pl.projekt5.models.ModelFactory;
+import pl.projekt5.models.Nauczyciel;
+import pl.projekt5.models.NauczycielModel;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.showMessageDialog;
+import pl.projekt5.models.Klasa;
+import pl.projekt5.models.KlasaModel;
+import pl.projekt5.models.Przedmiot;
+import pl.projekt5.models.PrzedmiotModel;
+import pl.projekt5.models.Uczen;
+import pl.projekt5.models.UczenModel;
+
 /**
  *
  * @author Jacek
@@ -15,8 +28,20 @@ public class Opcje extends javax.swing.JFrame {
     /**
      * Creates new form Opcje
      */
+    
     public Opcje() {
         initComponents();
+        ModelFactory m = ModelFactory.getInstance();
+        KlasaModel klasa1 = (KlasaModel)m.getModel("KlasaModel");
+        ListIterator<Klasa> it = klasa1.getAll().listIterator();
+        while(it.hasNext()){
+            jComboBox3.addItem(it.next().nazwa);
+        }
+        if(!jCheckBox1.isSelected())
+            jComboBox3.setVisible(false);
+        else
+            jComboBox3.setVisible(true);
+        opcja.setVisible(false);
     }
 
     /**
@@ -28,93 +53,374 @@ public class Opcje extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        tytul = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
-        jComboBox1 = new javax.swing.JComboBox();
-        jComboBox2 = new javax.swing.JComboBox();
         jComboBox3 = new javax.swing.JComboBox();
+        haslo_label = new javax.swing.JLabel();
+        haslo_pole = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        opcja = new javax.swing.JLabel();
+        combo1 = new javax.swing.JComboBox();
+        Zamknij = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
-        jLabel1.setText("Dodaj/usun nauczyciela klase..");
+        tytul.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        tytul.setText("Dodaj/usun nauczyciela klase..");
 
         jLabel2.setText("jLabel2");
 
-        jTextField1.setText("jTextField1");
-
         jLabel3.setText("jLabel3");
 
-        jTextField2.setText("jTextField2");
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Zatwierdz");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jCheckBox1.setText("Wychowawca");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jesli nauczyciel to jakiego przedmiotu?" }));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "I jakie klasy powinien uczyc?" }));
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jakiej klasy?" }));
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
+
+        haslo_label.setText("Haslo");
+
+        jLabel1.setText("Przedmiot");
+
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
+
+        Zamknij.setText("Zamknij");
+        Zamknij.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ZamknijActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(73, 73, 73)
+                .addComponent(opcja)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
+                    .addComponent(tytul)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(121, 121, 121)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jCheckBox1)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField1))
+                                .addGap(25, 25, 25)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox1)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(64, 64, 64)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel1)
+                                .addComponent(haslo_label)
+                                .addComponent(haslo_pole)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(18, 18, 18)
+                                .addComponent(Zamknij))))
+                    .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(tytul))
+                    .addComponent(opcja))
+                .addGap(17, 17, 17)
+                .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(haslo_label))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(haslo_pole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jCheckBox1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addContainerGap(47, Short.MAX_VALUE))
+                    .addComponent(jButton1)
+                    .addComponent(Zamknij))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        if(opcja.getText().equals("5")){           
+            ModelFactory m = ModelFactory.getInstance();
+            String nazwa = jComboBox3.getSelectedItem().toString();
+        
+            KlasaModel kl = (KlasaModel)m.getModel("KlasaModel");
+            ListIterator<Klasa> it = kl.getAll().listIterator();
+            int id = 0;
+            while(it.hasNext()){
+                Klasa kl2 = it.next();
+                if(nazwa.equals(kl2.nazwa)){
+                    id = kl2.id;
+                }      
+            }    
+            UczenModel uczen1 = (UczenModel)m.getModel("UczenModel");
+            ListIterator<Uczen> it2 = uczen1.getAll(id).listIterator();
+            while(it2.hasNext()){
+                Uczen uczen2 = it2.next();
+                combo1.addItem(uczen2.nazwisko+" "+uczen2.imie);
+            }        
+        }
+    }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        if(jCheckBox1.isSelected())
+            jComboBox3.setVisible(true);
+        else
+            jComboBox3.setVisible(false);
+        
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    void dodaj_nauczyciela(){
+        ModelFactory m = ModelFactory.getInstance();
+        NauczycielModel nauczyciele = (NauczycielModel)m.getModel("NauczycielModel");
+        PrzedmiotModel przedmioty = (PrzedmiotModel)m.getModel("PrzedmiotModel");
+        if(jTextField1.getText().equals("") || jTextField2.getText().equals("") || haslo_pole.getText().equals("")){   
+            showMessageDialog(null, "Sprawdz poprawnosc wpisanych danych");  
+        }
+        else{
+            String imie = jTextField1.getText();
+            String nazwisko = jTextField2.getText();
+            String haslo = haslo_pole.getText();
+            Nauczyciel naucz = new Nauczyciel(1, imie, nazwisko);
+            
+            KlasaModel klasa1 = (KlasaModel)m.getModel("KlasaModel");
+            ListIterator<Klasa> it = klasa1.getAll().listIterator();
+            
+            
+            if(jCheckBox1.isSelected()){                
+                int id2=0;
+                while(it.hasNext()){
+                    if(it.next().nazwa.equals(jComboBox3.getSelectedItem().toString())){
+                        it.previous();
+                        id2 = it.next().id;
+                    }      
+                }
+                showMessageDialog(null, "Dodaje wychowawce "+id2); 
+                nauczyciele.add(naucz, haslo, id2);
+            }
+            else{
+                nauczyciele.add(naucz, haslo);
+            }
+            ListIterator<Nauczyciel> int2 = nauczyciele.getAll().listIterator();
+            int idd=0;
+            while(int2.hasNext()){
+                idd = int2.next().id;
+            }
+            if(!jTextField3.getText().equals("")) {
+                Przedmiot przed = new Przedmiot(1, jTextField3.getText());            
+                przedmioty.add(przed, idd);
+            }
+            showMessageDialog(null, "Dodano nauczyciela"); 
+            view okno = new view();
+            okno.setVisible(true);
+            dispose();
+        }      
+    }
+    
+    void dodaj_klase(){
+        ModelFactory m = ModelFactory.getInstance();
+        KlasaModel klasy = (KlasaModel)m.getModel("KlasaModel");
+        if(jTextField1.getText().equals("")){
+            showMessageDialog(null, "Pole z nazwa klasy jest puste");
+        }
+        else{
+            String nazwa = jTextField1.getText();
+            boolean flaga=false;
+            
+            KlasaModel klasa1 = (KlasaModel)m.getModel("KlasaModel");
+            ListIterator<Klasa> it = klasa1.getAll().listIterator();
+            while(it.hasNext()){
+                if(it.next().nazwa.equals(nazwa)){
+                    flaga = true;
+                }          
+            }
+            if(flaga){
+                showMessageDialog(null, "W bazie zajduje sie juz klasa o takiej nazwie");                
+            }
+            else{
+                Klasa kl = new Klasa(1, nazwa);
+                klasy.add(kl);
+                showMessageDialog(null, "Dodano klase");
+                view okno = new view();
+                okno.setVisible(true);
+                dispose();
+            }
+        }
+    }
+    
+    void dodaj_ucznia(){
+        if(jTextField1.getText().equals("") || jTextField2.getText().equals("")){   
+            showMessageDialog(null, "Sprawdz poprawnosc wpisanych danych");  
+        }
+        else{
+            ModelFactory m = ModelFactory.getInstance();
+            KlasaModel klasa1 = (KlasaModel)m.getModel("KlasaModel");
+            ListIterator<Klasa> it = klasa1.getAll().listIterator();
+            int id=0;
+            while(it.hasNext()){
+                if(it.next().nazwa.equals(jComboBox3.getSelectedItem().toString())){
+                    it.previous();
+                    id = it.next().id;
+                }      
+            }
+            
+            Uczen ucz = new Uczen(1, jTextField1.getText(), jTextField2.getText());
+            UczenModel uczniowie = (UczenModel)m.getModel("UczenModel");
+            uczniowie.add(ucz, id);
+            showMessageDialog(null, "Dodano ucznia");
+            view okno = new view();
+            okno.setVisible(true);
+            dispose();
+            
+        }
+    }
+    
+    void usun_nauczyciela(){
+        ModelFactory m = ModelFactory.getInstance();
+        NauczycielModel naucz = (NauczycielModel)m.getModel("NauczycielModel");
+        ListIterator<Nauczyciel> it = naucz.getAll().listIterator();
+        Nauczyciel usun = new Nauczyciel(0, " ", " ");
+        while(it.hasNext()){
+            Nauczyciel naucz2 = it.next();
+            String nazwa = naucz2.nazwisko+" "+naucz2.imie;
+           if(nazwa.equals(combo1.getSelectedItem().toString())){
+               usun = naucz2;
+           }      
+        }
+        
+        naucz.delete(usun);
+        showMessageDialog(null, "Usunieto nauczyciela");  
+        view okno = new view();
+        okno.setVisible(true);
+        dispose();
+    }
+    
+    void usun_klase(){
+        ModelFactory m = ModelFactory.getInstance();
+        KlasaModel kl = (KlasaModel)m.getModel("KlasaModel");
+        ListIterator<Klasa> it = kl.getAll().listIterator();
+        Klasa usun = new Klasa(0, " ");
+        while(it.hasNext()){
+            Klasa kl2 = it.next();
+           if(kl2.nazwa.equals(combo1.getSelectedItem().toString())){
+               usun = kl2;
+           }      
+        }
+        
+        kl.delete(usun);
+        showMessageDialog(null, "Usunieto klase");  
+        view okno = new view();
+        okno.setVisible(true);
+        dispose();
+    }
+    
+    void usun_ucznia(){
+        ModelFactory m = ModelFactory.getInstance();
+        UczenModel ucz1 = (UczenModel)m.getModel("UczenModel");
+        ListIterator<Uczen> it = ucz1.getAll().listIterator();
+        Uczen usun = new Uczen(0, " ", " ");
+        while(it.hasNext()){
+            Uczen ucz2 = it.next();
+            String nazwa = ucz2.nazwisko+" "+ucz2.imie;
+           if(nazwa.equals(combo1.getSelectedItem().toString())){
+               usun = ucz2;
+           }      
+        }
+        
+        ucz1.delete(usun);
+        showMessageDialog(null, "Usunieto ucznia");  
+        view okno = new view();
+        okno.setVisible(true);
+        dispose();
+    }
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(opcja.getText().equals("0"))
+            dodaj_nauczyciela();
+        if(opcja.getText().equals("1"))
+            dodaj_klase();
+        if(opcja.getText().equals("2"))
+            dodaj_ucznia();
+        if(opcja.getText().equals("3"))
+            usun_nauczyciela();
+        if(opcja.getText().equals("4"))
+            usun_klase();
+        if(opcja.getText().equals("5"))
+            usun_ucznia();
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void ZamknijActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ZamknijActionPerformed
+        view okno = new view();
+        okno.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_ZamknijActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,16 +457,22 @@ public class Opcje extends javax.swing.JFrame {
         });
     }
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Zamknij;
+    public javax.swing.JComboBox combo1;
+    public javax.swing.JLabel haslo_label;
+    public javax.swing.JTextField haslo_pole;
     public javax.swing.JButton jButton1;
     public javax.swing.JCheckBox jCheckBox1;
-    public javax.swing.JComboBox jComboBox1;
-    public javax.swing.JComboBox jComboBox2;
     public javax.swing.JComboBox jComboBox3;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel3;
     public javax.swing.JTextField jTextField1;
     public javax.swing.JTextField jTextField2;
+    public javax.swing.JTextField jTextField3;
+    public javax.swing.JLabel opcja;
+    public javax.swing.JLabel tytul;
     // End of variables declaration//GEN-END:variables
 }
