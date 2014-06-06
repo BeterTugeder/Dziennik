@@ -46,6 +46,10 @@ public class NauczycielModel implements Model {
         
         PreparedStatement stmt;
         try {
+            stmt = conn.prepareStatement("UPDATE nauczyciele SET klasy_id=NULL WHERE klasy_id=?");
+            stmt.setInt(1, klasa);
+            stmt.executeUpdate();
+            stmt.close();
             stmt = conn.prepareStatement("INSERT INTO nauczyciele(imie, nazwisko, klasy_id, haslo) VALUES (?, ?, ?, ?)");
             //stmt.executeUpdate();
             stmt.setString(1, n.imie);
@@ -163,6 +167,10 @@ public class NauczycielModel implements Model {
     public void update(Nauczyciel n, int klasa) {
         PreparedStatement stmt;
         try {
+            stmt = conn.prepareStatement("UPDATE nauczyciele SET klasy_id=NULL WHERE klasy_id=?");
+            stmt.setInt(1, klasa);
+            stmt.executeUpdate();
+            stmt.close();
             stmt = conn.prepareStatement("UPDATE nauczyciele SET imie=?, nazwisko=?, klasy_id=? WHERE nauczyciele_id=?");
             //stmt.executeUpdate();
             stmt.setString(1, n.imie);

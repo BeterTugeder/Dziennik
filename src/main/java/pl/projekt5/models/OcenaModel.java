@@ -27,14 +27,15 @@ public class OcenaModel implements Model {
         conn = c;
     }
     
-    public void add(Ocena o, int przedmiot, int klasa) {
+    public void add(Ocena o, int przedmiot, int uczen, int kolumna) {
         PreparedStatement stmt;
         try {
-            stmt = conn.prepareStatement("INSERT INTO oceny(ocena, przedmioty_id, klasy_id) VALUES (?,?,?)");
+            stmt = conn.prepareStatement("INSERT INTO oceny(ocena, przedmioty_id, uczniowie_id, kolumny_id) VALUES (?,?,?,?)");
             //stmt.executeUpdate();
             stmt.setInt(1, o.ocena);
             stmt.setInt(2, przedmiot);
-            stmt.setInt(3, klasa);
+            stmt.setInt(3, uczen);
+            stmt.setInt(4, kolumna);
             stmt.executeUpdate();
             stmt.close();
         } catch (SQLException e) {
