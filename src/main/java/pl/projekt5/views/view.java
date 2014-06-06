@@ -299,6 +299,11 @@ public class view extends javax.swing.JFrame {
 
         opcje_zmien_nauczyciela.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
         opcje_zmien_nauczyciela.setText("nauczyciela");
+        opcje_zmien_nauczyciela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcje_zmien_nauczycielaActionPerformed(evt);
+            }
+        });
         opcje_zmien.add(opcje_zmien_nauczyciela);
 
         opcje_zmien_wychowawce.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
@@ -413,16 +418,7 @@ public class view extends javax.swing.JFrame {
     private void usun_nauczycielaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usun_nauczycielaActionPerformed
         Opcje okno = new Opcje();
         okno.tytul.setText("Usun nauczyciela");
-        okno.jLabel3.setVisible(false);
-        okno.haslo_pole.setVisible(false);
-        okno.haslo_label.setVisible(false);
-        okno.jCheckBox1.setVisible(false);
-        okno.jComboBox3.setVisible(false);
-        okno.jLabel1.setVisible(false);
-        okno.jTextField3.setVisible(false);
-         okno.jLabel2.setVisible(false);
-        okno.jTextField1.setVisible(false);
-        okno.jTextField2.setVisible(false);
+        okno.ukryj_wszystko();
         okno.combo1.setVisible(true);
         okno.opcja.setText("3");
         
@@ -443,15 +439,9 @@ public class view extends javax.swing.JFrame {
         Opcje okno = new Opcje();
         okno.tytul.setText("Dodaj klase");
         okno.jLabel2.setText("Nazwa");
-        okno.jLabel3.setVisible(false);
-        okno.haslo_pole.setVisible(false);
-        okno.haslo_label.setVisible(false);
-        okno.jCheckBox1.setVisible(false);
-        okno.jComboBox3.setVisible(false);
-        okno.jLabel1.setVisible(false);
-        okno.jTextField3.setVisible(false);
-        okno.jTextField2.setVisible(false);
-        okno.combo1.setVisible(false);
+        okno.ukryj_wszystko();
+        okno.jLabel2.setVisible(true);
+        okno.jTextField1.setVisible(true);
         okno.opcja.setText("1");
 
         okno.setVisible(true);
@@ -465,6 +455,9 @@ public class view extends javax.swing.JFrame {
         okno.jLabel2.setText("Imie");
         okno.jLabel3.setText("Nazwisko");
         okno.combo1.setVisible(false);
+        okno.label_combo2.setVisible(false);
+        okno.combo2.setVisible(false);
+        okno.label_combo1.setVisible(false);
         okno.opcja.setText("0");
         
         okno.setVisible(true);
@@ -476,14 +469,12 @@ public class view extends javax.swing.JFrame {
         okno.tytul.setText("Dodaj ucznia");
         okno.jLabel2.setText("Imie");
         okno.jLabel3.setText("Nazwisko");
-        okno.jCheckBox1.setVisible(false);
-        okno.jLabel1.setVisible(false);
-        okno.jTextField3.setVisible(false);
-        okno.haslo_pole.setVisible(false);
-        okno.haslo_label.setVisible(false);
-        okno.jCheckBox1.setSelected(true);
+        okno.ukryj_wszystko();
+        okno.jLabel2.setVisible(true);
+        okno.jLabel3.setVisible(true);
+        okno.jTextField1.setVisible(true);
+        okno.jTextField2.setVisible(true);
         okno.jComboBox3.setVisible(true);
-        okno.combo1.setVisible(false);
         
         okno.opcja.setText("2");
         okno.setVisible(true);
@@ -493,17 +484,8 @@ public class view extends javax.swing.JFrame {
     private void usun_klaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usun_klaseActionPerformed
         Opcje okno = new Opcje();
         okno.tytul.setText("Usun klase");
-        okno.jLabel3.setVisible(false);
-        okno.haslo_pole.setVisible(false);
-        okno.haslo_label.setVisible(false);
-        okno.jCheckBox1.setVisible(false);
-        okno.jComboBox3.setVisible(false);
-        okno.jLabel1.setVisible(false);
-        okno.jTextField3.setVisible(false);
-         okno.jLabel2.setVisible(false);
-        okno.jTextField1.setVisible(false);
-        okno.jTextField2.setVisible(false);
-        okno.combo1.setVisible(true);
+        okno.ukryj_wszystko();
+        okno.jComboBox3.setVisible(true);
         okno.opcja.setText("4");
         
         ModelFactory m = ModelFactory.getInstance();
@@ -521,17 +503,9 @@ public class view extends javax.swing.JFrame {
     private void usun_uczniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usun_uczniaActionPerformed
         Opcje okno = new Opcje();
         okno.tytul.setText("Usun ucznia");
-        okno.jLabel3.setVisible(false);
-        okno.haslo_pole.setVisible(false);
-        okno.haslo_label.setVisible(false);
-        okno.jCheckBox1.setVisible(false);
-        okno.jComboBox3.setVisible(true);
-        okno.jLabel1.setVisible(false);
-        okno.jTextField3.setVisible(false);
-        okno.jLabel2.setVisible(false);
-        okno.jTextField1.setVisible(false);
-        okno.jTextField2.setVisible(false);
+        okno.ukryj_wszystko();
         okno.combo1.setVisible(true);
+        okno.jComboBox3.setVisible(true);
         okno.opcja.setText("5");
         
         okno.setVisible(true);  
@@ -539,8 +513,54 @@ public class view extends javax.swing.JFrame {
     }//GEN-LAST:event_usun_uczniaActionPerformed
 
     private void opcje_zmien_wychowawceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcje_zmien_wychowawceActionPerformed
-
+        Opcje okno = new Opcje();
+        okno.tytul.setText("Zmien wychowawce");
+        okno.ukryj_wszystko();
+        okno.combo1.setVisible(true);
+        okno.jComboBox3.setVisible(true);
+        okno.label_combo1.setVisible(true);
+        okno.label_combo1.setText("Imie i nazwisko");
+        
+        ModelFactory m = ModelFactory.getInstance();
+        NauczycielModel nauczyciel1 = (NauczycielModel)m.getModel("NauczycielModel");
+        ListIterator<Nauczyciel> it2 = nauczyciel1.getAll().listIterator();
+        while(it2.hasNext()){
+            Nauczyciel nauczyciel2 = it2.next();
+            okno.combo1.addItem(nauczyciel2.nazwisko+" "+nauczyciel2.imie);
+        }
+        okno.opcja.setText("7");
+        okno.setVisible(true);
+        dispose();
     }//GEN-LAST:event_opcje_zmien_wychowawceActionPerformed
+
+    private void opcje_zmien_nauczycielaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcje_zmien_nauczycielaActionPerformed
+        Opcje okno = new Opcje();
+        okno.tytul.setText("Zmien nauczyciela");
+        okno.ukryj_wszystko();
+        okno.combo1.setVisible(true);
+        okno.combo2.setVisible(true);
+        okno.label_combo1.setVisible(true);
+        okno.label_combo2.setVisible(true);
+        okno.label_combo1.setText("Przedmiot");
+        okno.label_combo2.setText("Imie i nazwisko");
+        
+        ModelFactory m = ModelFactory.getInstance();
+        PrzedmiotModel przedmioty = (PrzedmiotModel)m.getModel("PrzedmiotModel");
+        ListIterator<Przedmiot> it = przedmioty.getAll().listIterator();
+        while(it.hasNext()){
+            okno.combo1.addItem(it.next().nazwa);
+        }       
+        
+        NauczycielModel nauczyciel1 = (NauczycielModel)m.getModel("NauczycielModel");
+        ListIterator<Nauczyciel> it2 = nauczyciel1.getAll().listIterator();
+        while(it2.hasNext()){
+            Nauczyciel nauczyciel2 = it2.next();
+            okno.combo2.addItem(nauczyciel2.nazwisko+" "+nauczyciel2.imie);
+        }
+        okno.opcja.setText("6");
+        okno.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_opcje_zmien_nauczycielaActionPerformed
 
     private void wypelnij_combobox(){
         ModelFactory m = ModelFactory.getInstance();

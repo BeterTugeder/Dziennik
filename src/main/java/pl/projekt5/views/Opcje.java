@@ -68,6 +68,9 @@ public class Opcje extends javax.swing.JFrame {
         opcja = new javax.swing.JLabel();
         combo1 = new javax.swing.JComboBox();
         Zamknij = new javax.swing.JButton();
+        combo2 = new javax.swing.JComboBox();
+        label_combo1 = new javax.swing.JLabel();
+        label_combo2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,6 +125,10 @@ public class Opcje extends javax.swing.JFrame {
             }
         });
 
+        label_combo1.setText("jLabel4");
+
+        label_combo2.setText("jLabel5");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,31 +139,35 @@ public class Opcje extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tytul)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBox1)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1))
-                                .addGap(25, 25, 25)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel1)
-                                .addComponent(haslo_label)
-                                .addComponent(haslo_pole)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jCheckBox1)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel2))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jTextField1)
+                                    .addGap(25, 25, 25)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(25, 25, 25))
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label_combo1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(label_combo2)
+                            .addComponent(haslo_pole, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton1)
-                                .addGap(18, 18, 18)
-                                .addComponent(Zamknij))))
-                    .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(86, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Zamknij))
+                            .addComponent(jLabel1)
+                            .addComponent(haslo_label)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                            .addComponent(combo2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,37 +177,62 @@ public class Opcje extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(tytul))
                     .addComponent(opcja))
-                .addGap(17, 17, 17)
-                .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_combo1)
+                    .addComponent(label_combo2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(combo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(haslo_label))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(haslo_label)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(haslo_pole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jCheckBox1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
                     .addComponent(Zamknij))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    void ukryj_wszystko(){
+        combo1.setVisible(false);
+        combo2.setVisible(false);
+        haslo_label.setVisible(false);
+        haslo_pole.setVisible(false);
+        jCheckBox1.setVisible(false);
+        jComboBox3.setVisible(false);
+        jLabel1.setVisible(false);
+        jLabel2.setVisible(false);
+        jLabel3.setVisible(false);
+        label_combo1.setVisible(false);
+        label_combo2.setVisible(false);
+        jTextField1.setVisible(false);
+        jTextField2.setVisible(false);
+        jTextField3.setVisible(false);
+        opcja.setVisible(false);  
+    }
+    
+    
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
         if(opcja.getText().equals("5")){           
             ModelFactory m = ModelFactory.getInstance();
@@ -247,17 +283,15 @@ public class Opcje extends javax.swing.JFrame {
             
             KlasaModel klasa1 = (KlasaModel)m.getModel("KlasaModel");
             ListIterator<Klasa> it = klasa1.getAll().listIterator();
-            
-            
             if(jCheckBox1.isSelected()){                
                 int id2=0;
                 while(it.hasNext()){
                     if(it.next().nazwa.equals(jComboBox3.getSelectedItem().toString())){
                         it.previous();
                         id2 = it.next().id;
+                        //nauczyciele.update(nauczyciele.get(id2, true), 0);
                     }      
                 }
-                showMessageDialog(null, "Dodaje wychowawce "+id2); 
                 nauczyciele.add(naucz, haslo, id2);
             }
             else{
@@ -396,6 +430,69 @@ public class Opcje extends javax.swing.JFrame {
         dispose();
     }
     
+    void zmien_nauczyciela(){
+        ModelFactory m = ModelFactory.getInstance();
+        NauczycielModel naucz = (NauczycielModel)m.getModel("NauczycielModel");
+        ListIterator<Nauczyciel> it = naucz.getAll().listIterator();
+        int id_nauczyciela = 0;
+        while(it.hasNext()){
+            Nauczyciel naucz2 = it.next();
+            String nazwa = naucz2.nazwisko+" "+naucz2.imie;
+           if(nazwa.equals(combo2.getSelectedItem().toString())){
+               id_nauczyciela = naucz2.id;
+           }      
+        }
+        
+        PrzedmiotModel przedmioty = (PrzedmiotModel)m.getModel("PrzedmiotModel");
+        ListIterator<Przedmiot> it2 = przedmioty.getAll().listIterator();
+        int id_przedmiotu = 0;
+        while(it2.hasNext()){
+            Przedmiot przedmiot_iter = it2.next();
+            String nazwa = przedmiot_iter.nazwa;
+            if(nazwa.equals(combo1.getSelectedItem().toString())){
+               id_przedmiotu = przedmiot_iter.id;
+           }      
+        }       
+        przedmioty.update(przedmioty.get(id_przedmiotu), id_nauczyciela);
+        showMessageDialog(null, "Zmieniono nauczyciela");  
+        view okno = new view();
+        okno.setVisible(true);
+        dispose();
+    }
+    
+    void zmien_wychowawce(){
+        ModelFactory m = ModelFactory.getInstance();
+        NauczycielModel naucz = (NauczycielModel)m.getModel("NauczycielModel");
+        ListIterator<Nauczyciel> it = naucz.getAll().listIterator();
+        int id_nauczyciela = 0;
+        while(it.hasNext()){
+            Nauczyciel naucz2 = it.next();
+            String nazwa = naucz2.nazwisko+" "+naucz2.imie;
+           if(nazwa.equals(combo1.getSelectedItem().toString())){
+               id_nauczyciela = naucz2.id;
+               showMessageDialog(null, id_nauczyciela);  
+           }      
+        }
+        KlasaModel klasy = (KlasaModel)m.getModel("KlasaModel");
+        ListIterator<Klasa> it2 = klasy.getAll().listIterator();
+        int id_klasy = 0;
+        while(it2.hasNext()){
+            Klasa klasa_iter = it2.next();
+            String nazwa = klasa_iter.nazwa;
+            if(nazwa.equals(jComboBox3.getSelectedItem().toString())){
+               id_klasy = klasa_iter.id;
+               showMessageDialog(null, id_klasy); 
+               naucz.update(naucz.get(id_klasy, true), 0);
+           }      
+        }
+        
+        naucz.update(naucz.get(id_nauczyciela), id_klasy);
+        showMessageDialog(null, "Zmieniono wychowawce");  
+        view okno = new view();
+        okno.setVisible(true);
+        dispose();
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(opcja.getText().equals("0"))
             dodaj_nauczyciela();
@@ -409,7 +506,10 @@ public class Opcje extends javax.swing.JFrame {
             usun_klase();
         if(opcja.getText().equals("5"))
             usun_ucznia();
-        
+        if(opcja.getText().equals("6"))
+            zmien_nauczyciela();
+        if(opcja.getText().equals("7"))
+            zmien_wychowawce();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -461,6 +561,7 @@ public class Opcje extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Zamknij;
     public javax.swing.JComboBox combo1;
+    public javax.swing.JComboBox combo2;
     public javax.swing.JLabel haslo_label;
     public javax.swing.JTextField haslo_pole;
     public javax.swing.JButton jButton1;
@@ -472,6 +573,8 @@ public class Opcje extends javax.swing.JFrame {
     public javax.swing.JTextField jTextField1;
     public javax.swing.JTextField jTextField2;
     public javax.swing.JTextField jTextField3;
+    public javax.swing.JLabel label_combo1;
+    public javax.swing.JLabel label_combo2;
     public javax.swing.JLabel opcja;
     public javax.swing.JLabel tytul;
     // End of variables declaration//GEN-END:variables

@@ -43,7 +43,10 @@ public class App
         System.out.printf("\n***\n%d\t%s\n", e.id, e.nazwa);
         
       
-      
+      PrzedmiotModel przedmioty = (PrzedmiotModel)m.getModel("PrzedmiotModel");
+        Przedmiot aa = przedmioty.get(2);
+        aa.nazwa = "informatyka";
+        przedmioty.update(aa, 2);
         
         
         /*
