@@ -59,14 +59,14 @@ public class OcenaModel implements Model {
         return result;
     }
     
-    public List<Ocena> getAll(int przedmiot, int klasa) {
+    public List<Ocena> getAll(int przedmiot, int kolumna) {
         Statement stmt;
         ResultSet rs;
         List result = new ArrayList<Ocena>();
         try {
             stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
             rs = stmt.executeQuery("SELECT oceny_id, ocena FROM oceny WHERE przedmioty_id="
-                    + przedmiot + " and klasy_id=" + klasa);
+                    + przedmiot + " and kolumny_id=" + kolumna);
             while(rs.next()) {
                 result.add( new Ocena(rs.getInt(1), rs.getInt(2))) ;
             }
