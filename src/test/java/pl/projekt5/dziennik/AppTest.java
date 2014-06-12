@@ -32,12 +32,8 @@ public class AppTest
     /**
      * Rigourous Test :-)
      */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
     
-    public void TestNauczyciel(){
+    public void testUczen(){
         Uczen uczenTest = new Uczen(1, "asd", "asd");
         assertEquals(uczenTest.imie,"asd");
         assertEquals(uczenTest.id, 1);
