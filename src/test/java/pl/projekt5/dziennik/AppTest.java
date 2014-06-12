@@ -3,6 +3,7 @@ package pl.projekt5.dziennik;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import pl.projekt5.models.Uczen;
 
 /**
  * Unit test for simple App.
@@ -34,5 +35,11 @@ public class AppTest
     public void testApp()
     {
         assertTrue( true );
+    }
+    
+    public void TestNauczyciel(){
+        Uczen uczenTest = new Uczen(1, "asd", "asd");
+        assertEquals(uczenTest.imie,"asd");
+        assertEquals(uczenTest.id, 1);
     }
 }
