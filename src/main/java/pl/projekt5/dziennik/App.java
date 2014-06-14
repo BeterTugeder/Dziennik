@@ -1,17 +1,22 @@
 package pl.projekt5.dziennik;
 
 import java.util.ListIterator;
+import java.util.Random;
 import pl.projekt5.handlers.LogHandler;
-import pl.projekt5.models.ModelFactory;
-
-import pl.projekt5.models.KlasaModel;
 import pl.projekt5.models.Klasa;
-import pl.projekt5.models.NauczycielModel;
+import pl.projekt5.models.KlasaModel;
+import pl.projekt5.models.Kolumna;
+import pl.projekt5.models.KolumnaModel;
+import pl.projekt5.models.ModelFactory;
 import pl.projekt5.models.Nauczyciel;
+import pl.projekt5.models.NauczycielModel;
+import pl.projekt5.models.Ocena;
+import pl.projekt5.models.OcenaModel;
 import pl.projekt5.models.Przedmiot;
 import pl.projekt5.models.PrzedmiotModel;
 import pl.projekt5.models.Uczen;
 import pl.projekt5.models.UczenModel;
+import pl.projekt5.views.view;
 
 /**
 * Hello world!
@@ -43,28 +48,14 @@ public class App
         System.out.printf("\n***\n%d\t%s\n", e.id, e.nazwa);
         
       
-      PrzedmiotModel przedmioty = (PrzedmiotModel)m.getModel("PrzedmiotModel");
+        
+        
+        
+        PrzedmiotModel przedmioty = (PrzedmiotModel)m.getModel("PrzedmiotModel");
         Przedmiot aa = przedmioty.get(2);
         aa.nazwa = "informatyka";
         przedmioty.update(aa, 2);
         
-        
-        /*
-       PrzedmiotModel przedmioty = (PrzedmiotModel)m.getModel("PrzedmiotModel");
-        Przedmiot aa = new Przedmiot(91, "matematyka");
-        Przedmiot bb = new Przedmiot(92, "fizyka");
-        Przedmiot cc = new Przedmiot(93, "informatyka");
-        przedmioty.add(aa, 1);
-        przedmioty.add(cc, 2);
-        przedmioty.add(bb, 3);
-        UczenModel uczniowie = (UczenModel)m.getModel("UczenModel");
-        Uczen aaa = new Uczen(1, "Agnieszka", "Madra");
-        Uczen bbb = new Uczen(2, "Adam", "Kowalewski");
-        uczniowie.add(aaa, 9);
-        uczniowie.add(bbb, 9);*/
-        
-        /*uczniowie.add("Jan", "Kowalski", klasa.get(9));
-        uczniowie.add("Jan", "Nowak", klasa.get(9));*/
         
         
         

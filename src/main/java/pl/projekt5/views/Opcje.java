@@ -72,7 +72,7 @@ public class Opcje extends javax.swing.JFrame {
         label_combo1 = new javax.swing.JLabel();
         label_combo2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         tytul.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         tytul.setText("Dodaj/usun nauczyciela klase..");
@@ -152,10 +152,11 @@ public class Opcje extends javax.swing.JFrame {
                                     .addComponent(jTextField1)
                                     .addGap(25, 25, 25)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(25, 25, 25))
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label_combo1))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(label_combo1))
+                                .addGap(25, 25, 25)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(label_combo2)
                             .addComponent(haslo_pole, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
