@@ -17,8 +17,10 @@ public class Ocena {
     public Kolumna kolumna;*/
     public int ocena;
 
+    
     public Ocena(int id, int ocena) {
         this.id = id;
         this.ocena = ocena;
     }
+    
 }

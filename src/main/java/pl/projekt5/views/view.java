@@ -5,7 +5,6 @@
  */
 
 package pl.projekt5.views;
-import pl.projekt5.views.Opcje;
 import java.util.ListIterator;
 import static javax.swing.JOptionPane.showMessageDialog;
 import pl.projekt5.models.Klasa;
@@ -13,13 +12,12 @@ import pl.projekt5.models.KlasaModel;
 import pl.projekt5.models.ModelFactory;
 import pl.projekt5.models.Nauczyciel;
 import pl.projekt5.models.NauczycielModel;
+import pl.projekt5.models.OcenaModel;
 import pl.projekt5.models.Przedmiot;
 import pl.projekt5.models.PrzedmiotModel;
 import pl.projekt5.models.Uczen;
 import pl.projekt5.models.UczenModel;
-
-/**
- *
+ /*
  * @author Jacek
  */
 public class view extends javax.swing.JFrame {
@@ -27,11 +25,54 @@ public class view extends javax.swing.JFrame {
     /**
      * Creates new form view
      */
+    private int ind;
     public view() {
         initComponents();
         wypelnij_combobox();
-    }
+   }
 
+    
+    
+    private int osobyKlasa(int idKlasy){
+        restartTabeli();
+        ModelFactory m = ModelFactory.getInstance();
+        UczenModel uczen1 = (UczenModel)m.getModel("UczenModel");
+        ListIterator<Uczen> it = uczen1.getAll(idKlasy).listIterator();
+        int i = 0;
+        while(it.hasNext()){
+             
+            Uczen uczen2 = it.next();
+            
+            tabela.getModel().setValueAt(uczen2.id, i , 0);
+            tabela.getModel().setValueAt(uczen2.imie+" "+uczen2.nazwisko, i , 1);
+            i++;
+            
+            if (i==20) break;
+        }
+        return i;
+    }
+    private int ocenaOsoby(int idUcznia, int idPrzedmiotu, int idKolumny){
+        
+        ModelFactory m = ModelFactory.getInstance();
+        OcenaModel km = (OcenaModel)m.getModel("OcenaModel");
+       // ListIterator<Kolumna> it = km.getAll().listIterator();
+        
+        int k = km.gett(idUcznia, idPrzedmiotu, idKolumny).ocena;
+        
+        
+       return k;
+    }
+    private void restartTabeli(){
+        
+        for(int i = 0 ; i<tabela.getRowCount() ; i++){
+            for( int j = 0 ; j < tabela.getColumnCount(); j++){
+                tabela.getModel().setValueAt(null, i , j);
+            }
+            
+        }
+        
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -240,27 +281,32 @@ public class view extends javax.swing.JFrame {
 
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nr", "Imię i nazwisko", "Spr.", "Kart.", "Odp.", "Obecność", "Sem. I", "Spr.", "Kart.", "Odp.", "Obecność", "Koniec roku"
+                "Nr", "Imie Nazwisko", "Spr.", "Kart.", "Odp.", "Semestr I", "Spr.", "Kart.", "Odp.", "Koniec roku"
             }
         ));
         scroll_panel.setViewportView(tabela);
-        if (tabela.getColumnModel().getColumnCount() > 0) {
-            tabela.getColumnModel().getColumn(0).setHeaderValue("Nr");
-            tabela.getColumnModel().getColumn(1).setHeaderValue("Imię i nazwisko");
-            tabela.getColumnModel().getColumn(2).setHeaderValue("Spr.");
-            tabela.getColumnModel().getColumn(3).setHeaderValue("Kart.");
-            tabela.getColumnModel().getColumn(4).setHeaderValue("Odp.");
-            tabela.getColumnModel().getColumn(5).setHeaderValue("Obecność");
-            tabela.getColumnModel().getColumn(6).setHeaderValue("Sem. I");
-            tabela.getColumnModel().getColumn(7).setHeaderValue("Spr.");
-            tabela.getColumnModel().getColumn(8).setHeaderValue("Kart.");
-            tabela.getColumnModel().getColumn(9).setHeaderValue("Odp.");
-            tabela.getColumnModel().getColumn(10).setHeaderValue("Obecność");
-            tabela.getColumnModel().getColumn(11).setHeaderValue("Koniec roku");
-        }
 
         opcje.setText("Opcje");
 
@@ -358,7 +404,10 @@ public class view extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addComponent(scroll_panel)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scroll_panel)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -367,15 +416,18 @@ public class view extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scroll_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE))
+                .addComponent(scroll_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    
     private void wybor_klasyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wybor_klasyActionPerformed
         klasa_text.setText(wybor_klasy.getSelectedItem().toString());
-        
         ModelFactory m = ModelFactory.getInstance();
         KlasaModel klasa1 = (KlasaModel)m.getModel("KlasaModel");
         ListIterator<Klasa> it = klasa1.getAll().listIterator();
@@ -387,7 +439,10 @@ public class view extends javax.swing.JFrame {
            }      
         }
         NauczycielModel nauczyciele = (NauczycielModel)m.getModel("NauczycielModel");
-
+        ind =  osobyKlasa(id);
+        
+        
+         
         wychowawca_text.setText(nauczyciele.get(id, true).nazwisko+" "+nauczyciele.get(id, true).imie);
     }//GEN-LAST:event_wybor_klasyActionPerformed
 
@@ -396,23 +451,43 @@ public class view extends javax.swing.JFrame {
     }//GEN-LAST:event_klasa_textActionPerformed
 
     private void wybor_przedmiotuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wybor_przedmiotuActionPerformed
-        ModelFactory m = ModelFactory.getInstance();
-        PrzedmiotModel przedmiot1 = (PrzedmiotModel)m.getModel("PrzedmiotModel");
-        ListIterator<Przedmiot> it = przedmiot1.getAll().listIterator();
-        int idd=0;
-        while(it.hasNext()){
-           if(it.next().nazwa.equals(wybor_przedmiotu.getSelectedItem().toString())){
-               it.previous();
-               idd = it.next().id;
-           }      
-        }
-        NauczycielModel nauczyciele = (NauczycielModel)m.getModel("NauczycielModel");
-        idd = przedmiot1.get(idd, true);
-      
-        if(nauczyciele.get(idd).imie.equals(null))
-            showMessageDialog(null, "Nie ma nauczyciela!");  
+        try{
+            
         
-        nauczyciel_text.setText(nauczyciele.get(idd).nazwisko+" "+nauczyciele.get(idd).imie);  
+            ModelFactory m = ModelFactory.getInstance();
+            PrzedmiotModel przedmiot1 = (PrzedmiotModel)m.getModel("PrzedmiotModel");
+            ListIterator<Przedmiot> it = przedmiot1.getAll().listIterator();
+            int idd=0;
+            while(it.hasNext()){
+               if(it.next().nazwa.equals(wybor_przedmiotu.getSelectedItem().toString())){
+                   it.previous();
+                   idd = it.next().id;
+               }      
+            }
+            NauczycielModel nauczyciele = (NauczycielModel)m.getModel("NauczycielModel");
+            idd = przedmiot1.get(idd, true);
+            //ocenyOsob(ind, idd);
+            if(nauczyciele.get(idd).imie.equals(null)){
+                showMessageDialog(null, "Nie ma nauczyciela!");  
+            }else{
+            for(int i =0 ;i< ind;i++){
+
+                tabela.getModel().setValueAt(ocenaOsoby( (Integer)tabela.getModel().getValueAt(i, 0), idd, 1), i , 2);
+                tabela.getModel().setValueAt(ocenaOsoby( (Integer)tabela.getModel().getValueAt(i, 0), idd, 2), i , 3);
+                tabela.getModel().setValueAt(ocenaOsoby( (Integer)tabela.getModel().getValueAt(i, 0), idd, 3), i , 4);
+                tabela.getModel().setValueAt(ocenaOsoby( (Integer)tabela.getModel().getValueAt(i, 0), idd, 1), i , 6);
+                tabela.getModel().setValueAt(ocenaOsoby( (Integer)tabela.getModel().getValueAt(i, 0), idd, 2), i , 8);
+                tabela.getModel().setValueAt(ocenaOsoby( (Integer)tabela.getModel().getValueAt(i, 0), idd, 3), i , 7);
+                //tabela.getModel().setValueAt(ocenaOsoby( (Integer)tabela.getModel().getValueAt(i, 0), idd, 27), i , 5);
+                tabela.getModel().setValueAt(((Integer)tabela.getModel().getValueAt(i, 2)+(Integer)tabela.getModel().getValueAt(i, 3)+(Integer)tabela.getModel().getValueAt(i, 4))/3, i, 5);
+                tabela.getModel().setValueAt(((Integer)tabela.getModel().getValueAt(i, 7)+(Integer)tabela.getModel().getValueAt(i, 8)+(Integer)tabela.getModel().getValueAt(i, 6))/3, i, 9);
+            }
+            nauczyciel_text.setText(nauczyciele.get(idd).nazwisko+" "+nauczyciele.get(idd).imie);  
+            }
+        }
+        catch(Exception e){
+            restartTabeli();
+        }
     }//GEN-LAST:event_wybor_przedmiotuActionPerformed
 
     private void usun_nauczycielaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usun_nauczycielaActionPerformed
@@ -634,7 +709,7 @@ public class view extends javax.swing.JFrame {
     public javax.swing.JLabel rok_szkolny;
     public javax.swing.JTextField rok_szkolny_text;
     public javax.swing.JScrollPane scroll_panel;
-    public javax.swing.JTable tabela;
+    private javax.swing.JTable tabela;
     public javax.swing.JLabel tablica;
     public javax.swing.JMenu usun;
     public javax.swing.JMenuItem usun_klase;
@@ -646,4 +721,5 @@ public class view extends javax.swing.JFrame {
     public javax.swing.JLabel wychowawca;
     public javax.swing.JTextField wychowawca_text;
     // End of variables declaration//GEN-END:variables
+
 }
