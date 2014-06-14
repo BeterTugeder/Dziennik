@@ -17,7 +17,7 @@ public class ModelFactory {
     
     private static ModelFactory instance = null;
     
-    private static Connection conn;
+    private static Connection conn = null;
     
     private ModelFactory() {
         try {
@@ -70,10 +70,11 @@ public class ModelFactory {
     }
     
     public static void closeConnection() {
-        try {
-            conn.close();
-        } catch (SQLException e) {
-            ExceptionHandler.handle(e, ExceptionHandler.FATAL_ERR);
-        }
+        if(conn != null)
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                ExceptionHandler.handle(e, ExceptionHandler.FATAL_ERR);
+            }
     }
 }
