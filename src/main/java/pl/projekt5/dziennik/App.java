@@ -26,12 +26,12 @@ public class App
 {
     public static void main( String[] args )
     {
-        ModelFactory m = ModelFactory.getInstance();
+        /*ModelFactory m = ModelFactory.getInstance();
         
         KlasaModel klasa = (KlasaModel)m.getModel("KlasaModel");
         /*klasa.add("2 A");
         klasa.add("3 A");
-        klasa.add("4 A");*/
+        klasa.add("4 A");* /
         ListIterator<Klasa> it = klasa.getAll().listIterator();
         Klasa e = null;
         while(it.hasNext()){
@@ -64,13 +64,20 @@ public class App
         while(uit.hasNext()){
             ue = uit.next();
             System.out.printf("%d\t%s\t%s\t%s\n", ue.id, ue.imie, ue.nazwisko, ue.klasa.nazwa);
-        }*/
+        }* /
+        */
         
-        //testowy komentarz
-        //commit
         
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new view().setVisible(true);
+                
+            }
+        });
+        
+        //zapisywanie logow
         LogHandler.close();
-        
+        //zamykanie polaczenia z baza danych
         ModelFactory.closeConnection();
     }
 }
