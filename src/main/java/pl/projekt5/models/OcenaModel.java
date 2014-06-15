@@ -126,6 +126,22 @@ public class OcenaModel implements Model {
         return result;
     }
     
+    public void update(int ocena,int id_ucznia,int id_przedmiot,int id_kolumny) {
+        PreparedStatement stmt;
+        try {
+            stmt = conn.prepareStatement("UPDATE oceny SET ocena=? WHERE uczniowie_id=? and przedmioty_id=? and kolumny_id=?");
+            //stmt.executeUpdate();
+            stmt.setInt(1, ocena);
+            stmt.setInt(2, id_ucznia);
+            stmt.setInt(3, id_przedmiot);
+            stmt.setInt(4, id_kolumny);
+            stmt.executeUpdate();
+            stmt.close();
+        } catch (SQLException e) {
+            ExceptionHandler.handle(e, ExceptionHandler.MESSAGE);
+        }
+    }
+    
     public void truncate() {
         Statement stmt;
         try {

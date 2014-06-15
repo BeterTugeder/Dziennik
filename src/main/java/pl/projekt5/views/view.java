@@ -5,8 +5,12 @@
  */
 
 package pl.projekt5.views;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ListIterator;
 import static javax.swing.JOptionPane.showMessageDialog;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import pl.projekt5.models.Klasa;
 import pl.projekt5.models.KlasaModel;
 import pl.projekt5.models.ModelFactory;
@@ -21,18 +25,58 @@ import pl.projekt5.models.UczenModel;
  /*
  * @author Jacek
  */
-public class view extends javax.swing.JFrame {
+public class view extends javax.swing.JFrame implements TableModelListener {
 
     /**
      * Creates new form view
      */
     private int ind;
+    private int idPrzedmiotu;
+    private boolean zaznacz =  false;
     public view() {
         initComponents();
+        SimpleDateFormat simpleDateHere = new SimpleDateFormat("yyyy");
+        rok_szkolny_text.setText(simpleDateHere.format(new Date()));
         wypelnij_combobox();
+        tabela.getModel().addTableModelListener(this);
    }
 
-    
+    public void tableChanged(TableModelEvent e) {
+        if(zaznacz == true){
+           
+            int row = e.getFirstRow();
+            int column = e.getColumn();
+                     
+            Object data = tabela.getModel().getValueAt(row, column);
+           
+            //System.out.println(data);
+            try{
+                ModelFactory m = ModelFactory.getInstance();
+                OcenaModel km = (OcenaModel)m.getModel("OcenaModel");
+                if(Integer.parseInt(String.valueOf(data))>=1 && Integer.parseInt(String.valueOf(data))<=5 ){
+                    if(column<5 ){
+                        km.update(Integer.parseInt(String.valueOf(data)), (Integer)tabela.getModel().getValueAt(row, 0), idPrzedmiotu, column-1);
+                    }else
+                    if(column>5){
+                        km.update(Integer.parseInt(String.valueOf(data)), (Integer)tabela.getModel().getValueAt(row, 0), idPrzedmiotu, column-5);
+                    }    
+                }else{
+                    showMessageDialog(null, "Podaj ocene w skali od 1 do 5");
+                }
+            }catch(Exception ex){
+                showMessageDialog(null, "Podaj liczbe");
+            }
+            zaznacz=false;
+           
+           
+        }
+       
+    }
+ 
+///dodac do eventow tabeli mauseClicked
+    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {                                    
+                 zaznacz = true;
+    }
     
     private int osobyKlasa(int idKlasy){
         restartTabeli();
@@ -471,6 +515,7 @@ public class view extends javax.swing.JFrame {
             }
             NauczycielModel nauczyciele = (NauczycielModel)m.getModel("NauczycielModel");
             idd = przedmiot1.get(idd, true);
+            idPrzedmiotu = idd;
             //ocenyOsob(ind, idd);
             if(nauczyciele.get(idd).imie.equals(null)){
                 showMessageDialog(null, "Nie ma nauczyciela!");  
