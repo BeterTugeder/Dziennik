@@ -34,11 +34,14 @@ public class view extends javax.swing.JFrame implements TableModelListener {
     private int idPrzedmiotu;
     private boolean zaznacz =  false;
     public view() {
+        
         initComponents();
+        
+        tabela.getModel().addTableModelListener(this);
+
         SimpleDateFormat simpleDateHere = new SimpleDateFormat("yyyy");
         rok_szkolny_text.setText(simpleDateHere.format(new Date()));
         wypelnij_combobox();
-        tabela.getModel().addTableModelListener(this);
    }
 
     public void tableChanged(TableModelEvent e) {
@@ -49,20 +52,42 @@ public class view extends javax.swing.JFrame implements TableModelListener {
                      
             Object data = tabela.getModel().getValueAt(row, column);
            
-            //System.out.println(data);
+            System.out.println(data);
+            
             try{
+                
+                
+                
                 ModelFactory m = ModelFactory.getInstance();
                 OcenaModel km = (OcenaModel)m.getModel("OcenaModel");
-                if(Integer.parseInt(String.valueOf(data))>=1 && Integer.parseInt(String.valueOf(data))<=5 ){
-                    if(column<5 ){
-                        km.update(Integer.parseInt(String.valueOf(data)), (Integer)tabela.getModel().getValueAt(row, 0), idPrzedmiotu, column-1);
-                    }else
-                    if(column>5){
-                        km.update(Integer.parseInt(String.valueOf(data)), (Integer)tabela.getModel().getValueAt(row, 0), idPrzedmiotu, column-5);
-                    }    
-                }else{
-                    showMessageDialog(null, "Podaj ocene w skali od 1 do 5");
-                }
+                
+                    if(Integer.parseInt(String.valueOf(data))==0)
+                    {
+                        if(column<5 ){
+                            km.addd(0, idPrzedmiotu, (Integer)tabela.getModel().getValueAt(row, 0), column-1);
+                            km.update(Integer.parseInt(String.valueOf(data)), (Integer)tabela.getModel().getValueAt(row, 0), idPrzedmiotu, column-1);
+                        }else
+                            if(column>5){
+                                
+                            km.addd(0, idPrzedmiotu, (Integer)tabela.getModel().getValueAt(row, 0), column-5);
+                            km.update(Integer.parseInt(String.valueOf(data)), (Integer)tabela.getModel().getValueAt(row, 0), idPrzedmiotu, column-5);
+                        }
+                    }
+                
+                    if(Integer.parseInt(String.valueOf(data))>=1 && Integer.parseInt(String.valueOf(data))<=5 ){
+
+
+                            if(column<5 ){
+                                km.update(Integer.parseInt(String.valueOf(data)), (Integer)tabela.getModel().getValueAt(row, 0), idPrzedmiotu, column-1);
+                            }else
+                            if(column>5){
+                                km.update(Integer.parseInt(String.valueOf(data)), (Integer)tabela.getModel().getValueAt(row, 0), idPrzedmiotu, column-5);
+                            } 
+
+                    }else{
+                        showMessageDialog(null, "Podaj ocene w skali od 1 do 5");
+                    }
+            
             }catch(Exception ex){
                 showMessageDialog(null, "Podaj liczbe");
             }
@@ -73,10 +98,7 @@ public class view extends javax.swing.JFrame implements TableModelListener {
        
     }
  
-///dodac do eventow tabeli mauseClicked
-    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {                                    
-                 zaznacz = true;
-    }
+
     
     private int osobyKlasa(int idKlasy){
         restartTabeli();
@@ -355,6 +377,11 @@ public class view extends javax.swing.JFrame implements TableModelListener {
                 "Nr", "Imie Nazwisko", "Spr.", "Kart.", "Odp.", "Semestr I", "Spr.", "Kart.", "Odp.", "Koniec roku"
             }
         ));
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaMouseClicked(evt);
+            }
+        });
         scroll_panel.setViewportView(tabela);
 
         opcje.setText("Opcje");
@@ -686,6 +713,11 @@ public class view extends javax.swing.JFrame implements TableModelListener {
         okno.setVisible(true);
         dispose();
     }//GEN-LAST:event_opcje_zmien_nauczycielaActionPerformed
+
+    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
+        zaznacz=true;
+        
+    }//GEN-LAST:event_tabelaMouseClicked
 
     private void wypelnij_combobox(){
         ModelFactory m = ModelFactory.getInstance();
