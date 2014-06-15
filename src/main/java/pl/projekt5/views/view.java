@@ -12,7 +12,6 @@ import pl.projekt5.models.KlasaModel;
 import pl.projekt5.models.ModelFactory;
 import pl.projekt5.models.Nauczyciel;
 import pl.projekt5.models.NauczycielModel;
-import pl.projekt5.models.Ocena;
 import pl.projekt5.models.OcenaModel;
 import pl.projekt5.models.Przedmiot;
 import pl.projekt5.models.PrzedmiotModel;
@@ -58,11 +57,7 @@ public class view extends javax.swing.JFrame {
         OcenaModel km = (OcenaModel)m.getModel("OcenaModel");
        // ListIterator<Kolumna> it = km.getAll().listIterator();
         
-        Ocena tmp = km.gett(idUcznia, idPrzedmiotu, idKolumny);
-        
-        int k = 0;
-        if(tmp != null)
-            k = tmp.ocena;
+        int k = km.gett(idUcznia, idPrzedmiotu, idKolumny).ocena;
         
         
        return k;
