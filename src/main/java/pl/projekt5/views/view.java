@@ -52,7 +52,7 @@ public class view extends javax.swing.JFrame implements TableModelListener {
                      
             Object data = tabela.getModel().getValueAt(row, column);
            
-            System.out.println(data);
+            //System.out.println(data);
             
             try{
                 
@@ -61,7 +61,7 @@ public class view extends javax.swing.JFrame implements TableModelListener {
                 ModelFactory m = ModelFactory.getInstance();
                 OcenaModel km = (OcenaModel)m.getModel("OcenaModel");
                 
-                    if(Integer.parseInt(String.valueOf(data))==0)
+                    if(km.gett((Integer)tabela.getModel().getValueAt(row, 0), idPrzedmiotu, column-1)==null)
                     {
                         if(column<5 ){
                             km.addd(0, idPrzedmiotu, (Integer)tabela.getModel().getValueAt(row, 0), column-1);
@@ -72,9 +72,8 @@ public class view extends javax.swing.JFrame implements TableModelListener {
                             km.addd(0, idPrzedmiotu, (Integer)tabela.getModel().getValueAt(row, 0), column-5);
                             km.update(Integer.parseInt(String.valueOf(data)), (Integer)tabela.getModel().getValueAt(row, 0), idPrzedmiotu, column-5);
                         }
-                    }
-                
-                    if(Integer.parseInt(String.valueOf(data))>=1 && Integer.parseInt(String.valueOf(data))<=5 ){
+                        //System.out.println("dziala");
+                    }else if(Integer.parseInt(String.valueOf(data))>=1 && Integer.parseInt(String.valueOf(data))<=5 ){
 
 
                             if(column<5 ){
